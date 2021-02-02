@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">FriGo</string>
+    <string name="button_login_popup">Войти</string>
+    <string name="button_registration">Зарегистрироваться</string>
+    <string name="hint_login_edit">Login</string>
+    <string name="hint_password_edit">Password</string>
+    <string name="button_login">Войти в аккаунт</string>
+    <string name="button_registration_okay">Готово</string>
+    <string name="button_registration_cancel">Отмена</string>
+    <string name="radio_button_woman">Женский</string>
+    <string name="radio_button_man">Мужской</string>
+    <string name="radio_button_other">Не скажу</string>
+    <string name="textview_sex">Выберите ваш пол</string>
+    <string name="textedit_name">Ваше имя</string>
+    <string name="textview_info">Дополнительные информация (необязательно):</string>
+</resources>
