@@ -65,7 +65,7 @@
                     android:paddingBottom="10dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/login_textfield"
+                        android:id="@+id/registration_activity_login_textfield"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -76,7 +76,7 @@
                         android:textColor="@color/blue_dark" />
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/password_textfield"
+                        android:id="@+id/registration_activity_password_textfield"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"

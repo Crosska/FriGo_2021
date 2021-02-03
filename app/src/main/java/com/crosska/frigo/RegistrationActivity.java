@@ -1,17 +1,11 @@
 package com.crosska.frigo;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -19,13 +13,13 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -56,8 +50,8 @@ public class RegistrationActivity extends AppCompatActivity {
         womanRadioButton = findViewById(R.id.woman_radiobutton);
         manRadioButton = findViewById(R.id.man_radiobutton);
         otherRadioButton = findViewById(R.id.other_radiobutton);
-        login_textfield = findViewById(R.id.login_textfield);
-        password_textfield = findViewById(R.id.password_textfield);
+        login_textfield = findViewById(R.id.registration_activity_login_textfield);
+        password_textfield = findViewById(R.id.registration_activity_password_textfield);
         name_textfield = findViewById(R.id.name_textfield);
         error_cardview = findViewById(R.id.error_message_cardview);
         error_textview = findViewById(R.id.error_message_textview);
@@ -92,33 +86,21 @@ public class RegistrationActivity extends AppCompatActivity {
                 */
 
                 if (password_textfield.getText().toString().matches(pattern_final_password)) {
-
                     SQLiteDatabase DataBase = getBaseContext().openOrCreateDatabase("data.db", MODE_PRIVATE, null);
-                    DataBase.execSQL("CREATE TABLE IF NOT EXISTS users (login TEXT, password TEXT)");
+                    DataBase.execSQL("CREATE TABLE IF NOT EXISTS users (login TEXT, pass TEXT, name TEXT, sex INTEGER)");
                     String login_sql = login_textfield.getText().toString();
                     String password_sql = password_textfield.getText().toString();
-
-                    DataBase.execSQL("INSERT INTO users VALUES ( '" + login_sql + "', '" + password_sql + "' ) ");
-
-                    /*Cursor query = DataBase.rawQuery("SELECT * FROM users;", null);
-                    if (query.moveToFirst()) {
-
-                        String name = query.getString(0);
-                        String password = query.getString(1);
-                        //Toast.makeText(this, name + " = " + password, Toast.LENGTH_LONG).show();
-                    }
-                    query.close();*/
+                    String name_sql = name_textfield.getText().toString();
+                    String sql = "INSERT INTO users VALUES ( '" + login_sql + "', '" + password_sql + "', '" + name_sql + "', " + getSex() + ") ";
+                    DataBase.execSQL(sql);
                     DataBase.close();
                     saveAccount();
                     this.finish();
-
-
                     if (error_message_showed) {
                         Animation animation = AnimationUtils.loadAnimation(this, R.anim.hide_error_message);
                         error_cardview.startAnimation(animation);
                         error_cardview.setVisibility(View.INVISIBLE);
                     }
-
                 } else {
                     showSpecSymbolErrorMessage();
                     scrollview.smoothScrollTo(0, error_cardview.getBottom());
@@ -152,7 +134,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             "\nХотя бы одна прописная буква" +
                             "\nХотя бы одна строчная буква" +
                             "\nХотя бы один спецсимвол" +
-                            "\nНе содержать пробелы" +
+                            "\nНе содержать пробелы\n" +
                             "\nПример \"Pa$$w0rd\"");
                 }
 

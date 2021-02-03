@@ -13,4 +13,7 @@
     <string name="textview_sex">Выберите ваш пол</string>
     <string name="textedit_name">Ваше имя</string>
     <string name="textview_info">Дополнительные информация (необязательно):</string>
+    <string name="textview_error_log_in">Ошибка\n\nПроверьте правильность введённых данных </string>
+    <string name="menu_button_logout">Выйти из аккаунта</string>
+    <string name="menu_button_settings">Настройки</string>
 </resources>

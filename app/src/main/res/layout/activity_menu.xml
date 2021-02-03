@@ -25,28 +25,26 @@
             android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/menu_maincard_human"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
                 app:cardBackgroundColor="@color/blue_standart"
-                app:cardElevation="15dp"
-                android:id="@+id/menu_maincard_human">
+                app:cardElevation="15dp">
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/menu_secondcard_human"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    app:cardElevation="20dp"
-                    android:id="@+id/menu_secondcard_human">
+                    app:cardElevation="20dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="3dp"
-                        android:src="@drawable/icon_human" />
+                        android:id="@+id/user_imageview"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -60,26 +58,92 @@
                 android:layout_margin="15dp"
                 android:fontFamily="@font/comfortaa_light"
                 android:text="@string/hint_login_edit"
+                android:textAlignment="textStart"
                 android:textColor="@color/blue_standart"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                tools:ignore="RtlCompat" />
 
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/materialCardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        app:cardBackgroundColor="@color/error"
         app:cardCornerRadius="15dp"
-        app:elevation="15dp"
+        app:cardElevation="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/materialCardView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView2">
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp">
 
+            <TextView
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comfortaa_light"
+                android:text="Здесь будет меню"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+        </ScrollView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/comfortaa_light"
+                android:text="@string/menu_button_logout"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                app:cornerRadius="15dp"
+                android:onClick="logoutButtonClicked"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/comfortaa_light"
+                android:text="@string/menu_button_settings"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                app:cornerRadius="15dp"
+                android:onClick="settingsButtonClicked"/>
+
+        </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
