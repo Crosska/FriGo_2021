@@ -3,6 +3,7 @@ package com.crosska.frigo;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -16,14 +17,19 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.card.MaterialCardView;
+
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class RegistrationActivity extends AppCompatActivity {
 
+    private ScrollView scrollview;
     private RadioButton womanRadioButton;
     private RadioButton manRadioButton;
     private RadioButton otherRadioButton;
@@ -34,12 +40,17 @@ public class RegistrationActivity extends AppCompatActivity {
     private TextView error_textview;
     private boolean error_message_showed = false;
     private SharedPreferences saved_data;
+    private final String pattern_final_password = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=/.,!?<>{}*])(?=\\S+$).{8,}";
+    private final String pattern_login = "(?=\\S+$).{4,}";
+    private final String pattern_password = "(?=\\S+$).{8,}";
+    private MaterialCardView maincard_human;
+    private MaterialCardView secondcard_human;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getSupportActionBar().hide();
+        Objects.requireNonNull(this.getSupportActionBar()).hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_registration);
         womanRadioButton = findViewById(R.id.woman_radiobutton);
@@ -50,6 +61,16 @@ public class RegistrationActivity extends AppCompatActivity {
         name_textfield = findViewById(R.id.name_textfield);
         error_cardview = findViewById(R.id.error_message_cardview);
         error_textview = findViewById(R.id.error_message_textview);
+        scrollview = findViewById(R.id.scroll_main);
+        maincard_human = findViewById(R.id.registry_maincard_human);
+        secondcard_human = findViewById(R.id.registry_secondcard_human);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        maincard_human.setRadius((float) maincard_human.getWidth() / 2);
+        secondcard_human.setRadius((float) secondcard_human.getWidth() / 2);
     }
 
     public void cancelButtonClicked(View view) {
@@ -59,18 +80,18 @@ public class RegistrationActivity extends AppCompatActivity {
     public void createButtonClicked(View view) {
 
         if (!login_textfield.getText().toString().isEmpty() && !password_textfield.getText().toString().isEmpty()) {
-            if (login_textfield.getText().toString().length() >= 4 && password_textfield.getText().toString().length() >= 8) {
-                if (password_textfield.getText().toString().contains("!") ||
-                        password_textfield.getText().toString().contains("@") ||
-                        password_textfield.getText().toString().contains("#") ||
-                        password_textfield.getText().toString().contains("$") ||
-                        password_textfield.getText().toString().contains("%") ||
-                        password_textfield.getText().toString().contains("^") ||
-                        password_textfield.getText().toString().contains("&") ||
-                        password_textfield.getText().toString().contains("*") ||
-                        password_textfield.getText().toString().contains("(") ||
-                        password_textfield.getText().toString().contains(")") ||
-                        password_textfield.getText().toString().contains("?")) {
+            if (login_textfield.getText().toString().matches(pattern_login) && password_textfield.getText().toString().matches(pattern_password)) {
+
+                /*
+                (?=.*[0-9]) цифра должна появляться по крайней мере один раз
+                (?=.*[a-z]) строчная буква должна появляться как минимум раз
+                (?=.*[a-z]) письмо с верхним регистром должно происходить по крайней мере один раз
+                (?=.*[@#$%^&+=]) специальный символ должен появляться по крайней мере один раз
+                (?=\\S+$) пробелы не разрешены во всей строке
+                .{8,} не менее 8 символов
+                */
+
+                if (password_textfield.getText().toString().matches(pattern_final_password)) {
 
                     SQLiteDatabase DataBase = getBaseContext().openOrCreateDatabase("data.db", MODE_PRIVATE, null);
                     DataBase.execSQL("CREATE TABLE IF NOT EXISTS users (login TEXT, password TEXT)");
@@ -100,12 +121,16 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 } else {
                     showSpecSymbolErrorMessage();
+                    scrollview.smoothScrollTo(0, error_cardview.getBottom());
                 }
             } else {
                 showLengthErrorMessage();
+                scrollview.smoothScrollTo(0, error_cardview.getBottom());
             }
         } else {
             showEmptyErrorMessage();
+            scrollview.smoothScrollTo(0, error_cardview.getBottom());
+
         }
     }
 
@@ -118,9 +143,17 @@ public class RegistrationActivity extends AppCompatActivity {
             animation = AnimationUtils.loadAnimation(cont, R.anim.show_error_message);
             animation.setAnimationListener(new Animation.AnimationListener() {
 
+                @SuppressLint("SetTextI18n")
                 @Override
                 public void onAnimationStart(Animation animation) {
-                    error_textview.setText("Ошибка:\n\nПароль должен содержать хотя бы один спецсимвол");
+                    error_textview.setText("Ошибка:\n\nПароль должен подходить под требования: " +
+                            "\nДлинной не менее 8 символов" +
+                            "\nХотя бы одна цифра" +
+                            "\nХотя бы одна прописная буква" +
+                            "\nХотя бы одна строчная буква" +
+                            "\nХотя бы один спецсимвол" +
+                            "\nНе содержать пробелы" +
+                            "\nПример \"Pa$$w0rd\"");
                 }
 
                 @Override
@@ -143,9 +176,17 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 }
 
+                @SuppressLint("SetTextI18n")
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    error_textview.setText("Ошибка:\n\nПароль должен содержать хотя бы один спецсимвол");
+                    error_textview.setText("Ошибка:\n\nПароль должен подходить под требования: \n" +
+                            "\nДлинной не менее 8 символов" +
+                            "\nХотя бы одна цифра" +
+                            "\nХотя бы одна прописная буква" +
+                            "\nХотя бы одна строчная буква" +
+                            "\nХотя бы один спецсимвол" +
+                            "\nНе содержать пробелы\n" +
+                            "\nПример \"Pa$$w0rd\"");
                     animation = AnimationUtils.loadAnimation(cont, R.anim.show_error_message);
                     error_cardview.startAnimation(animation);
                 }

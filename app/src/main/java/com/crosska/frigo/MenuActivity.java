@@ -7,26 +7,42 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.android.material.card.MaterialCardView;
+
+import java.util.Objects;
+
 public class MenuActivity extends AppCompatActivity {
 
     private SharedPreferences saved_data;
     private String Username;
     private String Name;
     private TextView username_textview;
+    private MaterialCardView maincard_human;
+    private MaterialCardView secondcard_human;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getSupportActionBar().hide();
+        Objects.requireNonNull(this.getSupportActionBar()).hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_menu);
         username_textview = findViewById(R.id.username_textview);
+        maincard_human = findViewById(R.id.menu_maincard_human);
+        secondcard_human = findViewById(R.id.menu_secondcard_human);
         checkRecentAccount();
-        if(Name.isEmpty()) {
+        if (Name.isEmpty()) {
             username_textview.setText(Username);
         } else {
             username_textview.setText(Name);
         }
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        maincard_human.setRadius((float) maincard_human.getWidth() / 2);
+        secondcard_human.setRadius((float) secondcard_human.getWidth() / 2);
     }
 
     @Override

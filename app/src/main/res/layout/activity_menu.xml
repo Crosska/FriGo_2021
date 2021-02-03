@@ -30,16 +30,16 @@
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
                 app:cardBackgroundColor="@color/blue_standart"
-                app:cardCornerRadius="180dp"
-                app:cardElevation="15dp">
+                app:cardElevation="15dp"
+                android:id="@+id/menu_maincard_human">
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
-                    app:cardCornerRadius="180dp"
-                    app:cardElevation="20dp">
+                    app:cardElevation="20dp"
+                    android:id="@+id/menu_secondcard_human">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="match_parent"
@@ -79,10 +79,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView2">
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp" />
+
 
     </com.google.android.material.card.MaterialCardView>
 

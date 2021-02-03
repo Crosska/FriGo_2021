@@ -4,29 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
-    android:onClick="backgroundClicked">
+    android:onClick="backgroundClicked"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="0.1dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/icon_apple"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_weight="0.125"
+            android:src="@drawable/ic_apple" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/icon_banana"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_banana"
+            android:layout_weight="0.125"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/icon_bread"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_bread"
+            android:layout_weight="0.125"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/icon_cheese"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_cheese"
+            android:layout_weight="0.125"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/icon_fish"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_fish"
+            android:layout_weight="0.125"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/icon_taco"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_taco"
+            android:layout_weight="0.125"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/icon_watermelon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_watermelon"
+            android:layout_weight="0.125"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_weight="0.125"
+            android:id="@+id/icon_hotdog"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_hot_dog"/>
+
+    </LinearLayout>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
+        android:id="@+id/materialCardViewLoginIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginTop="70dp"
         android:onClick="mainIconClicked"
-        app:cardCornerRadius="180dp"
         app:cardElevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="23dp"
-            android:layout_marginTop="29dp"
-            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:src="@drawable/icon_app"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,9 +105,9 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="164dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="164dp"
         android:fontFamily="@font/comfortaa_light"
         android:text="@string/app_name"
@@ -46,11 +115,11 @@
         android:textSize="45sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+        app:layout_constraintTop_toBottomOf="@+id/materialCardViewLoginIcon" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="10dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="15dp"
@@ -99,8 +168,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/login_edit_text_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="170dp"
         android:layout_margin="10dp"
 
         android:visibility="invisible"

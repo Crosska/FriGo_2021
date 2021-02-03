@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegistrationActivity">
@@ -17,27 +18,27 @@
             android:layout_marginTop="30dp">
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/registry_maincard_human"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
                 app:cardBackgroundColor="@color/blue_standart"
-                app:cardCornerRadius="180dp"
                 app:cardElevation="15dp">
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/registry_secondcard_human"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
-                    app:cardCornerRadius="180dp"
                     app:cardElevation="20dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="3dp"
                         android:layout_gravity="center"
+                        android:layout_marginTop="3dp"
                         android:src="@drawable/icon_human" />
 
                 </com.google.android.material.card.MaterialCardView>
@@ -97,6 +98,7 @@
                         android:textSize="19sp" />
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/name_textfield"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
@@ -105,8 +107,7 @@
                         android:fontFamily="@font/comfortaa_light"
                         android:hint="@string/textedit_name"
                         android:inputType="textAutoComplete"
-                        android:textColor="@color/blue_dark"
-                        android:id="@+id/name_textfield"/>
+                        android:textColor="@color/blue_dark" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
@@ -129,34 +130,32 @@
                             android:id="@+id/woman_radiobutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="10dp"
-                            android:checked="true"
                             android:fontFamily="@font/comfortaa_light"
                             android:onClick="womanRadioButtonClicked"
                             android:text="@string/radio_button_woman"
                             android:textColor="@color/blue_dark"
-                            android:textSize="12sp" />
+                            android:textSize="16sp" />
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
                             android:id="@+id/man_radiobutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="10dp"
                             android:fontFamily="@font/comfortaa_light"
                             android:onClick="manRadioButtonClicked"
                             android:text="@string/radio_button_man"
                             android:textColor="@color/blue_dark"
-                            android:textSize="12sp" />
+                            android:textSize="16sp" />
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
                             android:id="@+id/other_radiobutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:checked="true"
                             android:fontFamily="@font/comfortaa_light"
                             android:onClick="otherRadioButtonClicked"
                             android:text="@string/radio_button_other"
                             android:textColor="@color/blue_dark"
-                            android:textSize="12sp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -227,7 +226,7 @@
                 android:fontFamily="@font/comfortaa_light"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="12sp" />
 
         </com.google.android.material.card.MaterialCardView>
 
