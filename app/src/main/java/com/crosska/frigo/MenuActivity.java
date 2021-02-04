@@ -67,7 +67,6 @@ public class MenuActivity extends AppCompatActivity {
         super.onWindowFocusChanged(hasFocus);
         maincard_human.setRadius((float) maincard_human.getWidth() / 2);
         secondcard_human.setRadius((float) secondcard_human.getWidth() / 2);
-
     }
 
     @Override
@@ -99,4 +98,17 @@ public class MenuActivity extends AppCompatActivity {
     public void settingsButtonClicked(View view) {
     }
 
+    public void menuProductsButtonClicked(View view) {
+        Intent intent = new Intent(MenuActivity.this, GroceryActivity.class);
+        startActivity(intent);
+    }
+
+    public void menuRecipeButtonClicked(View view) {
+    }
+
+    public void menuShelfLifeButtonClicked(View view) {
+    }
+
+    public void menuCloudButtonClicked(View view) {
+    }
 }

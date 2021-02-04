@@ -246,6 +246,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             "\nХотя бы одна прописная буква" +
                             "\nХотя бы одна строчная буква" +
                             "\nНе содержать пробелы\n" +
+                            "\nНе содержать кириллицы\n" +
                             "\nПример \"Pa$$w0rd\"";
                     error_textview.setText(msg);
                 }

@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">FriGo</string>
     <string name="button_login_popup">Войти</string>
     <string name="button_registration">Зарегистрироваться</string>
     <string name="hint_login_edit">Login</string>
@@ -14,8 +14,7 @@
     <string name="textview_sex">Выберите ваш пол</string>
     <string name="textedit_name">Ваше имя</string>
     <string name="textview_info">Дополнительные информация (необязательно):</string>
-    <string name="textview_error_log_in">Ошибка\n\nПроверьте правильность введённых данных </string>
-    <string name="menu_button_logout">Выйти из аккаунта</string>
+    <string name="textview_error_log_in">Ошибка</string>
     <string name="menu_button_settings">Настройки</string>
-    <string name="name_description" translatable="false">Если вы укажите имя, при обращении к вам будет использоваться указанное имя, а не логин</string>
+    <string name="menu_button_logout">Выйти из аккаунта</string>
 </resources>

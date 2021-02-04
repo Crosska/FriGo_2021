@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="button_login_popup">Log in</string>
+    <string name="button_registration">Register</string>
+    <string name="hint_login_edit">Login</string>
+    <string name="hint_password_edit">Password</string>
+    <string name="hint_password_repeat_edit">Password (repeat)</string>
+    <string name="button_login">Log into account</string>
+    <string name="button_registration_okay">Done</string>
+    <string name="button_registration_cancel">Cancel</string>
+    <string name="radio_button_woman">Woman</string>
+    <string name="radio_button_man">Man</string>
+    <string name="radio_button_other">Secret</string>
+    <string name="textview_sex">Your gender</string>
+    <string name="textedit_name">Your name</string>
+    <string name="textview_info">Additional information (optional)</string>
+    <string name="textview_error_log_in">Error /n/n Check entered data</string>
+    <string name="menu_button_logout">Log out</string>
+    <string name="menu_button_settings">Settings</string>
+</resources>
