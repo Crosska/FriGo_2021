@@ -4,6 +4,4 @@ import android.app.Application;
 
 public class AppData extends Application {
 
-
-
 }
