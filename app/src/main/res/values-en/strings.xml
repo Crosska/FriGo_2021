@@ -14,7 +14,21 @@
     <string name="textview_sex">Your gender</string>
     <string name="textedit_name">Your name</string>
     <string name="textview_info">Additional information (optional)</string>
-    <string name="textview_error_log_in">Error /n/n Check entered data</string>
+    <string name="textview_error_log_in">Error\n\nCheck entered data</string>
     <string name="menu_button_logout">Log out</string>
     <string name="menu_button_settings">Settings</string>
+    <string name="name_description">If you specify a name, then when contacting you, th specified name will be used, and not the login</string>
+    <string name="grocery_button_fridge">Fridge</string>
+    <string name="grocery_button_freezer">Freezer</string>
+    <string name="grocery_search_hint">Search by products</string>
+    <string name="grocery_textview_list">Grocery list</string>
+    <string name="menu_button_grocery">Products</string>
+    <string name="menu_button_recipe">Recipes</string>
+    <string name="menu_button_shelf_life">Shelf life</string>
+    <string name="menu_button_synchronization">Cloud</string>
+    <string name="registration_length_error">Error:\n\nLogin must be at least 3 characters long and not contain spaces</string>
+    <string name="registration_password_requirements_error">"Error:\n\nPassword must match the requirements:\nAt least 8 characters long\nAt least one digit\nAt least one uppercase letter\nAt least one lowercase letter\nDo not contain spaces\nDo not contain Cyrillic\n\nExample \"Pa$$w0rd\"  "</string>
+    <string name="registration_empty_error">Error:\n\nYou must enter a username, password and repeat it</string>
+    <string name="registration_repeat_error">"Error:\n\nPasswords do not match"</string>
+    <string name="registration_login_exist_error">Error:\n\nThis login is already taken</string>
 </resources>

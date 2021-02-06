@@ -120,7 +120,7 @@
                         android:layout_marginHorizontal="15dp"
                         android:layout_weight="0.1"
                         android:fontFamily="@font/comfortaa_light"
-                        android:text="Продукты"
+                        android:text="@string/menu_button_grocery"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
@@ -163,7 +163,7 @@
                         android:layout_marginHorizontal="15dp"
                         android:layout_weight="0.1"
                         android:fontFamily="@font/comfortaa_light"
-                        android:text="Рецепты"
+                        android:text="@string/menu_button_recipe"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
@@ -206,7 +206,7 @@
                         android:layout_marginHorizontal="15dp"
                         android:layout_weight="0.1"
                         android:fontFamily="@font/comfortaa_light"
-                        android:text="Срок годности"
+                        android:text="@string/menu_button_shelf_life"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
@@ -248,7 +248,7 @@
                         android:layout_marginHorizontal="15dp"
                         android:layout_weight="0.1"
                         android:fontFamily="@font/comfortaa_light"
-                        android:text="Облако"
+                        android:text="@string/menu_button_synchronization"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="16sp" />

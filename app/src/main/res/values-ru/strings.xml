@@ -14,7 +14,21 @@
     <string name="textview_sex">Выберите ваш пол</string>
     <string name="textedit_name">Ваше имя</string>
     <string name="textview_info">Дополнительные информация (необязательно):</string>
-    <string name="textview_error_log_in">Ошибка</string>
+    <string name="textview_error_log_in">Ошибка\n\nПроверьте правильнось введенных данных</string>
     <string name="menu_button_settings">Настройки</string>
     <string name="menu_button_logout">Выйти из аккаунта</string>
+    <string name="name_description">"Если вы укажите имя, то при обращении к вам будет использоваться указанное имя, а не логин "</string>
+    <string name="grocery_button_fridge">Холодильник</string>
+    <string name="grocery_search_hint">Поиск по продуктам</string>
+    <string name="grocery_textview_list">Список продуктов</string>
+    <string name="menu_button_grocery">Продукты</string>
+    <string name="menu_button_recipe">Рецепты</string>
+    <string name="menu_button_shelf_life">Срок годности</string>
+    <string name="menu_button_synchronization">Облако</string>
+    <string name="grocery_button_freezer">Морозилка</string>
+    <string name="registration_length_error">Ошибка:\n\nЛогин должен быть длиной минимум 3 символа и не содержать пробелов</string>
+    <string name="registration_password_requirements_error">Ошибка:\n\nПароль должен подходить под требования:\nДлинной не менее 8 символов\nХотя бы одна цифра\nХотя бы одна прописная букв\nХотя бы одна строчная буква\nНе содержать пробелы\nНе содержать кириллицы\n\nПример \"Pa$$w0rd\""</string>
+    <string name="registration_empty_error">Ошибка:\n\nВы должны указать логин, пароль и повторить его</string>
+    <string name="registration_repeat_error">Ошибка:\n\nПароли не совпадают</string>
+    <string name="registration_login_exist_error">Ошибка:\n\nЭтот логин уже занят</string>
 </resources>

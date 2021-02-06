@@ -39,7 +39,7 @@
                     android:layout_weight="0.5"
                     android:fontFamily="@font/comfortaa_light"
                     android:onClick="fridgeContentClicked"
-                    android:text="Холодильник"
+                    android:text="@string/grocery_button_fridge"
                     app:backgroundTint="@color/blue_light"
                     app:cornerRadius="15dp" />
 
@@ -52,7 +52,7 @@
                     android:layout_weight="0.5"
                     android:fontFamily="@font/comfortaa_light"
                     android:onClick="freezerContentClicked"
-                    android:text="Морозилка"
+                    android:text="@string/grocery_button_freezer"
                     app:cornerRadius="15dp" />
 
             </LinearLayout>
@@ -73,7 +73,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.9"
                     android:fontFamily="@font/comfortaa_light"
-                    android:hint="Поиск по продуктам"
+                    android:hint="@string/grocery_search_hint"
                     android:inputType="text"
                     android:textColor="@color/blue_standart"
                     android:textSize="20sp" />
@@ -133,7 +133,7 @@
                 android:fontFamily="@font/comfortaa_light"
                 android:gravity="center"
                 android:layout_marginBottom="5dp"
-                android:text="Список продуктов"
+                android:text="@string/grocery_textview_list"
                 android:textColor="@color/blue_standart"
                 android:textSize="20sp" />
 

@@ -89,7 +89,6 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void createButtonClicked(View view) {
-
         if (!login_textfield.getText().toString().isEmpty() && !password_textfield.getText().toString().isEmpty() && !password_textfield.getText().toString().isEmpty()) { // Проверка на пустые поля
 
             if (checkExistingAccount()) {
@@ -240,15 +239,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 @Override
                 public void onAnimationStart(Animation animation) {
-                    String msg = "Ошибка:\n\nПароль должен подходить под требования: " +
-                            "\nДлинной не менее 8 символов" +
-                            "\nХотя бы одна цифра" +
-                            "\nХотя бы одна прописная буква" +
-                            "\nХотя бы одна строчная буква" +
-                            "\nНе содержать пробелы\n" +
-                            "\nНе содержать кириллицы\n" +
-                            "\nПример \"Pa$$w0rd\"";
-                    error_textview.setText(msg);
+                    error_textview.setText(R.string.registration_password_requirements_error);
                 }
 
                 @Override
@@ -271,14 +262,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    String msg = "Ошибка:\n\nПароль должен подходить под требования: " +
-                            "\nДлинной не менее 8 символов" +
-                            "\nХотя бы одна цифра" +
-                            "\nХотя бы одна прописная буква" +
-                            "\nХотя бы одна строчная буква" +
-                            "\nНе содержать пробелы\n" +
-                            "\nПример \"Pa$$w0rd\"";
-                    error_textview.setText(msg);
+                    error_textview.setText(R.string.registration_password_requirements_error);
                     animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.show_error_message);
                     error_cardview.startAnimation(animation);
                 }
@@ -302,7 +286,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 @Override
                 public void onAnimationStart(Animation animation) {
-                    error_textview.setText("Ошибка:\n\nЛогин должен быть длиной минимум 3 символа и не содержать пробелов");
+                    error_textview.setText(R.string.registration_length_error);
                 }
 
                 @Override
@@ -325,7 +309,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    error_textview.setText("Ошибка:\n\nЛогин должен быть длиной минимум 3 символа и не содержать пробелов");
+                    error_textview.setText(R.string.registration_length_error);
                     animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.show_error_message);
                     error_cardview.startAnimation(animation);
                 }
@@ -349,7 +333,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 @Override
                 public void onAnimationStart(Animation animation) {
-                    error_textview.setText("Ошибка:\n\nВы должны указать логин, пароль и повторить его");
+                    error_textview.setText(R.string.registration_empty_error);
                 }
 
                 @Override
@@ -374,7 +358,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 public void onAnimationEnd(Animation animation) {
                     animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.show_error_message);
                     error_cardview.startAnimation(animation);
-                    error_textview.setText("Ошибка:\n\nВы должны указать логин, пароль и повторить его");
+                    error_textview.setText(R.string.registration_empty_error);
                 }
 
                 @Override
@@ -396,7 +380,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 @Override
                 public void onAnimationStart(Animation animation) {
-                    error_textview.setText("Ошибка:\n\nПароли не совпадают");
+                    error_textview.setText(R.string.registration_repeat_error);
                 }
 
                 @Override
@@ -419,7 +403,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    error_textview.setText("Ошибка:\n\nПароли не совпадают");
+                    error_textview.setText(R.string.registration_repeat_error);
                     animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.show_error_message);
                     error_cardview.startAnimation(animation);
                 }

@@ -1,5 +1,7 @@
 package com.crosska.frigo;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -67,6 +69,21 @@ public class MenuActivity extends AppCompatActivity {
         super.onWindowFocusChanged(hasFocus);
         maincard_human.setRadius((float) maincard_human.getWidth() / 2);
         secondcard_human.setRadius((float) secondcard_human.getWidth() / 2);
+
+        //AccountManager am = AccountManager.get(this); // current Context
+        //Account ac = new Account(Username, "com.crosska.frigo");
+        //am.addAccountExplicitly(ac, "12345678", Bundle.EMPTY);
+       // StringBuilder str = new StringBuilder();
+
+        /*Account[] accounts = am.getAccounts();
+        for (Account account : accounts) {
+            str.append(account.name).append("\n");
+            /*if (account.type.equalsIgnoreCase("com.google")) {
+                //Что-то делаем
+            }*/
+        /*}
+
+        Toast.makeText(this, str.toString(), Toast.LENGTH_LONG).show();*/
     }
 
     @Override
