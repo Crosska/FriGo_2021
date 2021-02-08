@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
@@ -24,25 +25,27 @@ import java.util.TimerTask;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private MaterialCardView icon_card;
-    private boolean animation_start = true;
-    private SharedPreferences sp;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sp = getSharedPreferences("user_data", MODE_PRIVATE);
         Objects.requireNonNull(this.getSupportActionBar()).hide();
         setContentView(R.layout.activity_splash);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        icon_card = findViewById(R.id.loading_activity_app_cardview);
+
+        MaterialCardView icon_card = findViewById(R.id.loading_activity_app_cardview);
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_loading_activity_icon_app);
         icon_card.startAnimation(animation);
-        if (!checkActiveAccount()) {
-            if (sp.getBoolean("DBL", false)) {
+
+        SharedPreferences saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
+        if (!saved_data.getBoolean("ACCOUNT_LOGGED", false)) { // если false, то переходим в проверку заполнения БД, иначе
+
+            if (saved_data.getBoolean("DATABASE_LOADED", false)) {
+
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
+
             } else {
+
                 SQLiteDatabase DataBase = getBaseContext().openOrCreateDatabase("data.db", MODE_PRIVATE, null);
                 String SQLQuery = "CREATE TABLE IF NOT EXISTS Users (" +
                         "Login TEXT PRIMARY KEY, " +
@@ -78,9 +81,9 @@ public class SplashActivity extends AppCompatActivity {
 
                 insertDataProduct();
 
-                SharedPreferences saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
+                saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
                 SharedPreferences.Editor ed = saved_data.edit();
-                ed.putBoolean("DBL", true);
+                ed.putBoolean("DATABASE_LOADED", true);
                 ed.apply();
 
                 Random rand = new Random();
@@ -96,14 +99,11 @@ public class SplashActivity extends AppCompatActivity {
                         });
                     }
                 }, delay);
-            }
-        }
-    }
 
-    private boolean checkActiveAccount() {
-        SharedPreferences saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
-        String recent_login = saved_data.getString("LGN", "null");
-        if (!recent_login.equals("null")) {
+            }
+
+        } else {
+
             Random rand = new Random();
             int delay = rand.nextInt(1000);
             new Timer().schedule(new TimerTask() {
@@ -111,15 +111,14 @@ public class SplashActivity extends AppCompatActivity {
                 public void run() {
                     SplashActivity.this.runOnUiThread(new Runnable() {
                         public void run() {
-                            Intent intent = new Intent(SplashActivity.this, MenuActivity.class);
+                            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                             startActivity(intent);
                         }
                     });
                 }
             }, delay);
-            return true;
+
         }
-        return false;
     }
 
     private void insertDataProduct() {

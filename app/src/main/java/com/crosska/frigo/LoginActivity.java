@@ -1,10 +1,8 @@
 package com.crosska.frigo;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -17,8 +15,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.google.android.material.card.MaterialCardView;
 
@@ -30,10 +26,10 @@ import java.util.TimerTask;
 public class LoginActivity extends AppCompatActivity {
 
     private MaterialCardView login_bar;
-    private MaterialCardView icon_card;
     private EditText login_edit_text;
     private EditText password_edit_text;
     private CardView error_cardview;
+    private SharedPreferences saved_data;
     private boolean login_card_showed = false;
     private boolean error_message_showed = false;
 
@@ -41,35 +37,28 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Objects.requireNonNull(this.getSupportActionBar()).hide();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         login_bar = findViewById(R.id.login_edit_text_group);
-        icon_card = findViewById(R.id.materialCardViewLoginIcon);
         login_edit_text = findViewById(R.id.login_activity_login_text_edit);
         password_edit_text = findViewById(R.id.login_activity_password_text_edit);
         error_cardview = findViewById(R.id.login_activity_error_card);
-        //icon_card.setRadius((float) icon_card.getWidth() / 2);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        getPermissions();
-        if (!checkActiveAccount()) {
-            Objects.requireNonNull(this.getSupportActionBar()).hide();
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            setContentView(R.layout.activity_login);
-            login_bar = findViewById(R.id.login_edit_text_group);
-            icon_card = findViewById(R.id.materialCardViewLoginIcon);
-            login_edit_text = findViewById(R.id.login_activity_login_text_edit);
-            password_edit_text = findViewById(R.id.login_activity_password_text_edit);
-            error_cardview = findViewById(R.id.login_activity_error_card);
+        saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
+        if (saved_data.getBoolean("ACCOUNT_LOGGED", false)) {
+            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+            startActivity(intent);
         }
     }
 
-    private void getPermissions() {
-        //permissionGET_ACCOUNTS();
-        //permissionREAD_CONTACTS();
+    /*private void getPermissions() {
+        permissionGET_ACCOUNTS();
+        permissionREAD_CONTACTS();
     }
-
 
     private void permissionGET_ACCOUNTS() {
         int MY_PERMISSIONS_REQUEST_GET_ACCOUNTS = 0;
@@ -100,12 +89,11 @@ public class LoginActivity extends AppCompatActivity {
                         MY_PERMISSIONS_REQUEST_READ_CONTACTS);
             }
         }
-    }
+    }*/
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        //icon_card.setRadius((float) icon_card.getWidth() / 2);
         ImageView food_icon;
         food_icon = findViewById(R.id.icon_apple);
         startNewAnimation(food_icon);
@@ -131,21 +119,16 @@ public class LoginActivity extends AppCompatActivity {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                LoginActivity.this.runOnUiThread(new Runnable() {
-                    public void run() {
-                        moveIcon(food_icon);
-                    }
-                });
+                LoginActivity.this.runOnUiThread(() -> moveFoodIcon(food_icon));
             }
         }, delay);
-        //icon_card.setRadius((float) icon_card.getWidth() / 2);
     }
 
     public void registerButtonClicked(View view) {
         //if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
         //        == PackageManager.PERMISSION_GRANTED) {
-            Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
-            startActivity(intent);
+        Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+        startActivity(intent);
         //} else {
         //    Toast.makeText(this, R.string.error_app_rights, Toast.LENGTH_SHORT).show();
         //}
@@ -172,70 +155,72 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginButtonClicked(View view) {
-       // if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
-       //         == PackageManager.PERMISSION_GRANTED) {
+        // if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
+        //         == PackageManager.PERMISSION_GRANTED) {
 
-            String login_sql = login_edit_text.getText().toString();
-            String password_sql = password_edit_text.getText().toString();
-            String login = "null";
-            String password = "null";
-            String name = "null";
-            int sex = -1;
+        String login_sql = login_edit_text.getText().toString();
+        String password_sql = password_edit_text.getText().toString();
+        String login = "null";
+        String password = "null";
+        String name = "null";
+        int sex = -1;
 
-            SQLiteDatabase DataBase = getBaseContext().openOrCreateDatabase("data.db", MODE_PRIVATE, null);
-            String SQLQuery = "SELECT (login, pass, name, sex) FROM users WHERE (login = '" + login_sql + "' AND pass = '" + password_sql + "')";
-            Cursor query = DataBase.rawQuery(SQLQuery, null);
-            if (query.moveToFirst()) {
-                login = query.getString(0);
-                password = query.getString(1);
-                name = query.getString(2);
-                sex = query.getInt(3);
-            }
-            query.close();
-            DataBase.close();
+        SQLiteDatabase DataBase = getBaseContext().openOrCreateDatabase("data.db", MODE_PRIVATE, null);
+        String SQLQuery = "SELECT Login, Pass, Name, Sex FROM Users WHERE (Login = '" + login_sql + "' AND Pass = '" + password_sql + "')";
+        Cursor query = DataBase.rawQuery(SQLQuery, null);
+        if (query.moveToFirst()) {
+            login = query.getString(0);
+            password = query.getString(1);
+            name = query.getString(2);
+            sex = query.getInt(3);
+        }
+        query.close();
+        DataBase.close();
 
-            if (login_sql.equals(login) && password_sql.equals(password)) {
-                SharedPreferences saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
-                SharedPreferences.Editor ed = saved_data.edit();
-                ed.putString("LGN", login);
-                ed.apply();
-                ed.putString("NAME", name);
-                ed.apply();
-                ed.putInt("SEX", sex);
-                ed.apply();
-                Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                startActivity(intent);
+        if (login_sql.equals(login) && password_sql.equals(password)) {
+            SharedPreferences saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
+            SharedPreferences.Editor ed = saved_data.edit();
+            ed.putString("LOGIN", login);
+            ed.apply();
+            ed.putString("NAME", name);
+            ed.apply();
+            ed.putInt("SEX", sex);
+            ed.apply();
+            ed.putBoolean("ACCOUNT_LOGGED", true);
+            ed.apply();
+            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+            startActivity(intent);
+        } else {
+            Animation animation;
+            if (!error_message_showed) {
+                error_message_showed = true;
+                error_cardview.setVisibility(View.VISIBLE);
+                animation = AnimationUtils.loadAnimation(this, R.anim.anim_show_error_card);
             } else {
-                Animation animation;
-                if (!error_message_showed) {
-                    error_message_showed = true;
-                    error_cardview.setVisibility(View.VISIBLE);
-                    animation = AnimationUtils.loadAnimation(this, R.anim.anim_show_error_card);
-                } else {
-                    error_cardview.setVisibility(View.VISIBLE);
-                    animation = AnimationUtils.loadAnimation(this, R.anim.anim_grocery_activity_hide_error_card);
-                    animation.setAnimationListener(new Animation.AnimationListener() {
+                error_cardview.setVisibility(View.VISIBLE);
+                animation = AnimationUtils.loadAnimation(this, R.anim.anim_grocery_activity_hide_error_card);
+                animation.setAnimationListener(new Animation.AnimationListener() {
 
-                        @Override
-                        public void onAnimationStart(Animation animation) {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
 
-                        }
+                    }
 
-                        @Override
-                        public void onAnimationEnd(Animation animation) {
-                            animation = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.anim_show_error_card);
-                            error_cardview.startAnimation(animation);
-                        }
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        animation = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.anim_show_error_card);
+                        error_cardview.startAnimation(animation);
+                    }
 
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
 
-                        }
+                    }
 
-                    });
-                }
-                error_cardview.startAnimation(animation);
+                });
             }
+            error_cardview.startAnimation(animation);
+        }
         //} else {
         //    Toast.makeText(this, "Для работы приложения необходим доступ к контактам", Toast.LENGTH_SHORT).show();
         //}
@@ -244,33 +229,19 @@ public class LoginActivity extends AppCompatActivity {
     public void errorMessageClicked(View view) {
         error_message_showed = false;
         error_cardview.setVisibility(View.INVISIBLE);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_grocery_activity_hide_error_card);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_hide_smooth_alpha);
         error_cardview.startAnimation(animation);
     }
 
-    private void moveIcon(ImageView food_icon) {
+    private void moveFoodIcon(ImageView food_icon) {
+        food_icon.setVisibility(View.VISIBLE);
         Animation animation_move = AnimationUtils.loadAnimation(this, R.anim.anim_login_activity_food_moving);
-        animation_move.setAnimationListener(new Animation.AnimationListener() {
-
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                food_icon.startAnimation(animation_move);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
-        });
         food_icon.startAnimation(animation_move);
     }
 
     private boolean checkActiveAccount() {
         SharedPreferences saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
-        String recent_login = saved_data.getString("LGN", "null");
+        String recent_login = saved_data.getString("LOGIN", "null");
         if (!recent_login.equals("null")) {
             Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
             startActivity(intent);

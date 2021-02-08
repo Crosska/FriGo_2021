@@ -22,8 +22,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:layout_marginEnd="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/menu_maincard_human"
@@ -37,23 +38,22 @@
                     android:id="@+id/menu_secondcard_human"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
                     android:layout_gravity="center"
+                    android:layout_margin="10dp"
                     app:cardElevation="20dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/user_imageview"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="5dp"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp" />
 
                 </com.google.android.material.card.MaterialCardView>
 
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.textview.MaterialTextView
-                android:layout_marginEnd="15dp"
                 android:id="@+id/username_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -279,16 +279,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="15dp"
+            android:layout_marginHorizontal="15dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="5dp">
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginVertical="7dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="15dp"
-                android:layout_marginBottom="5dp"
                 android:layout_weight="0.5"
                 android:fontFamily="@font/comfortaa_light"
                 android:onClick="logoutButtonClicked"
@@ -296,13 +297,13 @@
                 android:textAlignment="center"
                 android:textSize="15sp"
                 app:cornerRadius="15dp"
-                app:elevation="10dp" />
+                app:elevation="3dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginVertical="7dp"
                 android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
                 android:layout_weight="0.5"
                 android:fontFamily="@font/comfortaa_light"
                 android:onClick="settingsButtonClicked"
@@ -310,7 +311,7 @@
                 android:textAlignment="center"
                 android:textSize="15sp"
                 app:cornerRadius="15dp"
-                app:elevation="10dp" />
+                app:elevation="3dp" />
 
         </LinearLayout>
 

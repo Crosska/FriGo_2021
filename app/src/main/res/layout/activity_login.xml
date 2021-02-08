@@ -7,20 +7,12 @@
     android:onClick="backgroundClicked"
     tools:context=".LoginActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@color/white"
-        android:elevation="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -30,56 +22,64 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="0.125"
-            android:src="@drawable/ic_animation_apple" />
+            android:src="@drawable/ic_animation_apple"
+            android:visibility="invisible" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_banana"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="0.125"
-            android:src="@drawable/ic_animation_banana" />
+            android:src="@drawable/ic_animation_banana"
+            android:visibility="invisible" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_bread"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="0.125"
-            android:src="@drawable/ic_animation_bread" />
+            android:src="@drawable/ic_animation_bread"
+            android:visibility="invisible" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_cheese"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="0.125"
-            android:src="@drawable/ic_animation_cheese" />
+            android:src="@drawable/ic_animation_cheese"
+            android:visibility="invisible" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_fish"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="0.125"
-            android:src="@drawable/ic_animation_fish" />
+            android:src="@drawable/ic_animation_fish"
+            android:visibility="invisible" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_taco"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="0.125"
-            android:src="@drawable/ic_animation_taco" />
+            android:src="@drawable/ic_animation_taco"
+            android:visibility="invisible" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_watermelon"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="0.125"
-            android:src="@drawable/ic_animation_watermelon" />
+            android:src="@drawable/ic_animation_watermelon"
+            android:visibility="invisible" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_hotdog"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="0.125"
-            android:src="@drawable/ic_animation_hotdog" />
+            android:src="@drawable/ic_animation_hotdog"
+            android:visibility="invisible" />
 
     </LinearLayout>
 
@@ -89,8 +89,8 @@
         android:layout_height="200dp"
         android:layout_marginTop="70dp"
         android:onClick="mainIconClicked"
-        app:cardElevation="20dp"
         app:cardCornerRadius="100dp"
+        app:cardElevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -121,9 +121,11 @@
         app:layout_constraintTop_toBottomOf="@+id/materialCardViewLoginIcon" />
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
+        android:layout_width="0dp"
+        android:layout_height="127dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -140,9 +142,8 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
                 android:elevation="10dp"
                 android:fontFamily="@font/comfortaa_light"
                 android:onClick="registerButtonClicked"
@@ -154,8 +155,7 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:layout_marginBottom="10dp"
                 android:elevation="10dp"
                 android:fontFamily="@font/comfortaa_light"
@@ -171,9 +171,11 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/login_edit_text_group"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
         android:visibility="invisible"
         app:cardCornerRadius="15dp"
         app:cardElevation="15dp"
@@ -184,9 +186,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
+            android:layout_margin="15dp"
             android:orientation="vertical">
-
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login_activity_login_text_edit"

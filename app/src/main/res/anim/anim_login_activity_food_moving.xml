@@ -2,13 +2,17 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android">
 
     <alpha
-        android:duration="4000"
+        android:duration="6000"
         android:fromAlpha="0.0"
-        android:toAlpha="1.0" />
+        android:toAlpha="1.0"
+        android:repeatMode="restart"
+        android:repeatCount="infinite"/>
 
     <translate
         android:duration="6000"
         android:fromYDelta="0"
-        android:toYDelta="2500" />
+        android:toYDelta="2500"
+        android:repeatMode="restart"
+        android:repeatCount="infinite"/>
 
 </set>

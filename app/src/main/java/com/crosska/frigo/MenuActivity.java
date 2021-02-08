@@ -1,7 +1,5 @@
 package com.crosska.frigo;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -73,7 +71,7 @@ public class MenuActivity extends AppCompatActivity {
         //AccountManager am = AccountManager.get(this); // current Context
         //Account ac = new Account(Username, "com.crosska.frigo");
         //am.addAccountExplicitly(ac, "12345678", Bundle.EMPTY);
-       // StringBuilder str = new StringBuilder();
+        // StringBuilder str = new StringBuilder();
 
         /*Account[] accounts = am.getAccounts();
         for (Account account : accounts) {
@@ -94,22 +92,22 @@ public class MenuActivity extends AppCompatActivity {
 
     private void checkRecentAccount() {
         saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
-        Username = saved_data.getString("LGN", "null");
-        Name = saved_data.getString("NAME", "null");
+        Username = saved_data.getString("LOGIN", "");
+        Name = saved_data.getString("NAME", "");
     }
 
     public void logoutButtonClicked(View view) {
-        this.finish();
         saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
         SharedPreferences.Editor ed = saved_data.edit();
-        ed.putString("LGN", "null");
+        ed.putString("LOGIN", "");
         ed.apply();
-        ed.putString("PSD", "null");
-        ed.apply();
-        ed.putString("NAME", "null");
+        ed.putString("NAME", "");
         ed.apply();
         ed.putInt("SEX", -1);
         ed.apply();
+        ed.putBoolean("ACCOUNT_LOGGED", false);
+        ed.apply();
+        this.finish();
     }
 
     public void settingsButtonClicked(View view) {

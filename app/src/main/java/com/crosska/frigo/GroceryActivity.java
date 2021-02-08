@@ -45,6 +45,8 @@ public class GroceryActivity extends AppCompatActivity {
     private boolean card_type_showed = true;
     private Typeface myFont;
     private EditText type_edittext;
+    private EditText product_custom_name_edittext;
+    private EditText product_exist_name_edittext;
     private final String[] countries = {"Мясопродукты", "Морепродукты", "Овощи", "Фрукты", "Хлебобулочные", "Крупы", "Кондитерские", "Соусы", "Жиры", "Молочные", "Яйца", "Грибы", "Напитки"};
 
     @Override
@@ -70,6 +72,8 @@ public class GroceryActivity extends AppCompatActivity {
         type_edittext = findViewById(R.id.grocery_activity_type_edittext);
         add_new_product_button = findViewById(R.id.grocery_activity_add_button);
         cancel_new_product_button = findViewById(R.id.grocery_activity_cancel_button);
+        product_custom_name_edittext = findViewById(R.id.grocery_activity_custom_product_name_edittext);
+        product_exist_name_edittext = findViewById(R.id.grocery_activity_exist_product_name_edittext);
 
         ArrayAdapter<String> adapter_spinner = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, countries);
         myFont = Typeface.createFromAsset(getAssets(), "comfortaa_light.ttf");
@@ -130,6 +134,9 @@ public class GroceryActivity extends AppCompatActivity {
     }
 
     public void addNewProductClicked(View view) {
+        type_edittext.setText("");
+        product_custom_name_edittext.setText("");
+        product_exist_name_edittext.setText("");
         add_new_product_button.setClickable(true);
         cancel_new_product_button.setClickable(true);
         radio_group.check(R.id.grocery_activity_radio_exist);
@@ -145,11 +152,11 @@ public class GroceryActivity extends AppCompatActivity {
         add_card.setVisibility(View.VISIBLE);
         if (card_type_showed) {
             fridge_list_card.setVisibility(View.INVISIBLE);
-            animation = AnimationUtils.loadAnimation(this, R.anim.anim_grocery_activity_hide_error_card);
+            animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_hide_smooth_alpha);
             fridge_list_card.startAnimation(animation);
         } else {
             freezer_list_card.setVisibility(View.INVISIBLE);
-            animation = AnimationUtils.loadAnimation(this, R.anim.anim_grocery_activity_hide_error_card);
+            animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_hide_smooth_alpha);
             freezer_list_card.startAnimation(animation);
         }
        /* SQLiteDatabase DataBase = getBaseContext().openOrCreateDatabase("data.db", MODE_PRIVATE, null);
@@ -167,25 +174,43 @@ public class GroceryActivity extends AppCompatActivity {
 
 
     public void existRadioButtonClicked(View view) {
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_show_smooth_alpha);
         product_type_spinner.setEnabled(true);
         product_type_spinner.setVisibility(View.VISIBLE);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_show_smooth_alpha);
         product_type_spinner.startAnimation(animation);
+
+        product_exist_name_edittext.setEnabled(true);
+        product_exist_name_edittext.setVisibility(View.VISIBLE);
+        product_exist_name_edittext.startAnimation(animation);
+
+        animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_hide_smooth_alpha);
         type_edittext.setEnabled(false);
         type_edittext.setVisibility(View.INVISIBLE);
-        animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_hide_smooth_alpha);
         type_edittext.startAnimation(animation);
+
+        product_custom_name_edittext.setEnabled(false);
+        product_custom_name_edittext.setVisibility(View.INVISIBLE);
+        product_custom_name_edittext.startAnimation(animation);
     }
 
     public void customRadioButtonClicked(View view) {
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_hide_smooth_alpha);
         product_type_spinner.setEnabled(false);
         product_type_spinner.setVisibility(View.INVISIBLE);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_hide_smooth_alpha);
         product_type_spinner.startAnimation(animation);
+
+        product_exist_name_edittext.setEnabled(false);
+        product_exist_name_edittext.setVisibility(View.INVISIBLE);
+        product_exist_name_edittext.startAnimation(animation);
+
+        animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_show_smooth_alpha);
         type_edittext.setEnabled(true);
         type_edittext.setVisibility(View.VISIBLE);
-        animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_show_smooth_alpha);
         type_edittext.startAnimation(animation);
+
+        product_custom_name_edittext.setEnabled(true);
+        product_custom_name_edittext.setVisibility(View.VISIBLE);
+        product_custom_name_edittext.startAnimation(animation);
     }
 
     public void cancelAddButtonClicked(View view) {
@@ -282,6 +307,7 @@ public class GroceryActivity extends AppCompatActivity {
             }
 
             holder.name.setTypeface(myFont);
+            holder.name.setTextSize(27);
             holder.name.setText("" + countries[position]);
             return v;
         }

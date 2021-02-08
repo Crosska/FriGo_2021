@@ -1,5 +1,6 @@
 package com.crosska.frigo;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
@@ -109,11 +110,6 @@ public class RegistrationActivity extends AppCompatActivity {
                             DataBase.close();
                             saveAccount();
                             this.finish();
-                            if (error_message_showed) {
-                                Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_grocery_activity_hide_error_card);
-                                error_cardview.startAnimation(animation);
-                                error_cardview.setVisibility(View.INVISIBLE);
-                            }
                         } else {
                             showNotMatchSymbolErrorMessage();
                             scrollview.smoothScrollTo(0, error_cardview.getBottom());
@@ -417,11 +413,13 @@ public class RegistrationActivity extends AppCompatActivity {
     private void saveAccount() {
         SharedPreferences saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
         SharedPreferences.Editor ed = saved_data.edit();
-        ed.putString("LGN", login_textfield.getText().toString());
+        ed.putString("LOGIN", login_textfield.getText().toString());
         ed.apply();
         ed.putString("NAME", name_textfield.getText().toString());
         ed.apply();
         ed.putInt("SEX", getSex());
+        ed.apply();
+        ed.putBoolean("ACCOUNT_LOGGED", true);
         ed.apply();
     }
 

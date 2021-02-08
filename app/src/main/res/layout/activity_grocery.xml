@@ -230,7 +230,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:cardCornerRadius="15dp"
         app:cardElevation="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -337,16 +337,49 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/grocery_activity_radio_group" />
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/grocery_activity_textview2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/comfortaa_light"
+                android:gravity="center"
+                android:text="Название добавляемого продукта"
+                android:textColor="@color/blue_standart"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/grocery_activity_type_edittext" />
+
             <com.google.android.material.textfield.TextInputEditText
-                android:hint="Продукт"
+                android:id="@+id/grocery_activity_exist_product_name_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:fontFamily="@font/comfortaa_light"
+                android:hint="Введите предлагаемое название"
+                android:importantForAutofill="yes"
+                android:inputType="textAutoComplete"
+                android:textColor="@color/blue_standart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/grocery_activity_textview2" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/grocery_activity_custom_product_name_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
                 android:layout_marginEnd="15dp"
+                android:fontFamily="@font/comfortaa_light"
+                android:hint="Введите свое название"
+                android:inputType="text"
+                android:textColor="@color/blue_standart"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/grocery_activity_spinner" />
+                app:layout_constraintTop_toBottomOf="@+id/grocery_activity_textview2" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/grocery_activity_add_button"
