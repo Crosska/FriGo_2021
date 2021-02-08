@@ -66,8 +66,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void getPermissions() {
-        permissionGET_ACCOUNTS();
-        permissionREAD_CONTACTS();
+        //permissionGET_ACCOUNTS();
+        //permissionREAD_CONTACTS();
     }
 
 
@@ -142,13 +142,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void registerButtonClicked(View view) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
-                == PackageManager.PERMISSION_GRANTED) {
+        //if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
+        //        == PackageManager.PERMISSION_GRANTED) {
             Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
             startActivity(intent);
-        } else {
-            Toast.makeText(this, R.string.error_app_rights, Toast.LENGTH_SHORT).show();
-        }
+        //} else {
+        //    Toast.makeText(this, R.string.error_app_rights, Toast.LENGTH_SHORT).show();
+        //}
     }
 
     public void loginBarButtonClicked(View view) {
@@ -172,8 +172,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginButtonClicked(View view) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
-                == PackageManager.PERMISSION_GRANTED) {
+       // if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
+       //         == PackageManager.PERMISSION_GRANTED) {
 
             String login_sql = login_edit_text.getText().toString();
             String password_sql = password_edit_text.getText().toString();
@@ -236,9 +236,9 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 error_cardview.startAnimation(animation);
             }
-        } else {
-            Toast.makeText(this, "Для работы приложения необходим доступ к контактам", Toast.LENGTH_SHORT).show();
-        }
+        //} else {
+        //    Toast.makeText(this, "Для работы приложения необходим доступ к контактам", Toast.LENGTH_SHORT).show();
+        //}
     }
 
     public void errorMessageClicked(View view) {

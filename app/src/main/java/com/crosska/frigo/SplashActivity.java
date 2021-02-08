@@ -83,18 +83,6 @@ public class SplashActivity extends AppCompatActivity {
                 ed.putBoolean("DBL", true);
                 ed.apply();
 
-                /*DataBase = getBaseContext().openOrCreateDatabase("data.db", MODE_PRIVATE, null);
-                SQLQuery = "SELECT (name) FROM dict_product_name";
-                Cursor query = DataBase.rawQuery(SQLQuery, null);
-                String login = "";
-                if (query.moveToFirst()) {
-                    login = query.getString(0);
-                }
-                query.close();
-                DataBase.close();*/
-
-                //Toast.makeText(this, login, Toast.LENGTH_LONG).show();
-
                 Random rand = new Random();
                 int delay = rand.nextInt(2500);
                 new Timer().schedule(new TimerTask() {
