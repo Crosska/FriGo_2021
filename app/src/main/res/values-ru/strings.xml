@@ -31,4 +31,7 @@
     <string name="registration_empty_error">Ошибка:\n\nВы должны указать логин, пароль и повторить его</string>
     <string name="registration_repeat_error">Ошибка:\n\nПароли не совпадают</string>
     <string name="registration_login_exist_error">Ошибка:\n\nЭтот логин уже занят</string>
+    <string name="grocery_textview_list_fridge">Холодильник</string>
+    <string name="error_app_rights">Приложению необходим доступ к: контактам</string>
+    <string name="grocery_textview_list_freezer">Морозилка</string>
 </resources>

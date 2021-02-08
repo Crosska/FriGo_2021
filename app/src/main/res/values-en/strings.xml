@@ -31,4 +31,7 @@
     <string name="registration_empty_error">Error:\n\nYou must enter a username, password and repeat it</string>
     <string name="registration_repeat_error">"Error:\n\nPasswords do not match"</string>
     <string name="registration_login_exist_error">Error:\n\nThis login is already taken</string>
+    <string name="grocery_textview_list_fridge">Fridge</string>
+    <string name="grocery_textview_list_freezer">Freezer</string>
+    <string name="error_app_rights">App need folowing rights: contacs</string>
 </resources>

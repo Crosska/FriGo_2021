@@ -40,6 +40,13 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        login_bar = findViewById(R.id.login_edit_text_group);
+        icon_card = findViewById(R.id.materialCardViewLoginIcon);
+        login_edit_text = findViewById(R.id.login_activity_login_text_edit);
+        password_edit_text = findViewById(R.id.login_activity_password_text_edit);
+        error_cardview = findViewById(R.id.login_activity_error_card);
+        //icon_card.setRadius((float) icon_card.getWidth() / 2);
     }
 
     @Override
@@ -62,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         permissionGET_ACCOUNTS();
         permissionREAD_CONTACTS();
     }
+
 
     private void permissionGET_ACCOUNTS() {
         int MY_PERMISSIONS_REQUEST_GET_ACCOUNTS = 0;
@@ -97,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        icon_card.setRadius((float) icon_card.getWidth() / 2);
+        //icon_card.setRadius((float) icon_card.getWidth() / 2);
         ImageView food_icon;
         food_icon = findViewById(R.id.icon_apple);
         startNewAnimation(food_icon);
@@ -119,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void startNewAnimation(ImageView food_icon) {
         Random rand = new Random();
-        int delay = rand.nextInt(3000);
+        int delay = rand.nextInt(4000);
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
@@ -130,6 +138,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         }, delay);
+        //icon_card.setRadius((float) icon_card.getWidth() / 2);
     }
 
     public void registerButtonClicked(View view) {
@@ -138,13 +147,13 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
             startActivity(intent);
         } else {
-            Toast.makeText(this, "Для работы приложения необходим доступ к контактам", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.error_app_rights, Toast.LENGTH_SHORT).show();
         }
     }
 
     public void loginBarButtonClicked(View view) {
         login_bar.setVisibility(View.VISIBLE);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.show_login_bar);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_login_activity_show_login_card);
         login_bar.startAnimation(animation);
         login_card_showed = true;
     }
@@ -152,7 +161,7 @@ public class LoginActivity extends AppCompatActivity {
     public void backgroundClicked(View view) {
         if (login_card_showed) {
             login_bar.setVisibility(View.INVISIBLE);
-            Animation animation = AnimationUtils.loadAnimation(this, R.anim.hide_login_bar);
+            Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_login_activity_hide_login_card);
             login_bar.startAnimation(animation);
             login_card_showed = false;
         }
@@ -174,9 +183,7 @@ public class LoginActivity extends AppCompatActivity {
             int sex = -1;
 
             SQLiteDatabase DataBase = getBaseContext().openOrCreateDatabase("data.db", MODE_PRIVATE, null);
-            String SQLQuery = "CREATE TABLE IF NOT EXISTS users (login TEXT, pass TEXT, name TEXT , sex INTEGER)";
-            DataBase.execSQL(SQLQuery);
-            SQLQuery = "SELECT * FROM users WHERE (login = '" + login_sql + "' AND pass = '" + password_sql + "')";
+            String SQLQuery = "SELECT (login, pass, name, sex) FROM users WHERE (login = '" + login_sql + "' AND pass = '" + password_sql + "')";
             Cursor query = DataBase.rawQuery(SQLQuery, null);
             if (query.moveToFirst()) {
                 login = query.getString(0);
@@ -192,8 +199,6 @@ public class LoginActivity extends AppCompatActivity {
                 SharedPreferences.Editor ed = saved_data.edit();
                 ed.putString("LGN", login);
                 ed.apply();
-                ed.putString("PSD", password);
-                ed.apply();
                 ed.putString("NAME", name);
                 ed.apply();
                 ed.putInt("SEX", sex);
@@ -205,10 +210,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (!error_message_showed) {
                     error_message_showed = true;
                     error_cardview.setVisibility(View.VISIBLE);
-                    animation = AnimationUtils.loadAnimation(this, R.anim.show_error_message);
+                    animation = AnimationUtils.loadAnimation(this, R.anim.anim_show_error_card);
                 } else {
                     error_cardview.setVisibility(View.VISIBLE);
-                    animation = AnimationUtils.loadAnimation(this, R.anim.hide_error_message);
+                    animation = AnimationUtils.loadAnimation(this, R.anim.anim_grocery_activity_hide_error_card);
                     animation.setAnimationListener(new Animation.AnimationListener() {
 
                         @Override
@@ -218,7 +223,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         @Override
                         public void onAnimationEnd(Animation animation) {
-                            animation = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.show_error_message);
+                            animation = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.anim_show_error_card);
                             error_cardview.startAnimation(animation);
                         }
 
@@ -239,12 +244,12 @@ public class LoginActivity extends AppCompatActivity {
     public void errorMessageClicked(View view) {
         error_message_showed = false;
         error_cardview.setVisibility(View.INVISIBLE);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.hide_error_message);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_grocery_activity_hide_error_card);
         error_cardview.startAnimation(animation);
     }
 
     private void moveIcon(ImageView food_icon) {
-        Animation animation_move = AnimationUtils.loadAnimation(this, R.anim.food_moving);
+        Animation animation_move = AnimationUtils.loadAnimation(this, R.anim.anim_login_activity_food_moving);
         animation_move.setAnimationListener(new Animation.AnimationListener() {
 
             @Override
@@ -278,11 +283,12 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (login_card_showed) {
             login_bar.setVisibility(View.INVISIBLE);
-            Animation animation = AnimationUtils.loadAnimation(this, R.anim.hide_login_bar);
+            Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_login_activity_hide_login_card);
             login_bar.startAnimation(animation);
             login_card_showed = false;
         } else {
             super.onBackPressed();
+            this.finishAffinity();
         }
     }
 

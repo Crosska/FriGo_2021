@@ -30,56 +30,56 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="0.125"
-            android:src="@drawable/ic_apple" />
+            android:src="@drawable/ic_animation_apple" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_banana"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="0.125"
-            android:src="@drawable/ic_banana" />
+            android:src="@drawable/ic_animation_banana" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_bread"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="0.125"
-            android:src="@drawable/ic_bread" />
+            android:src="@drawable/ic_animation_bread" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_cheese"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="0.125"
-            android:src="@drawable/ic_cheese" />
+            android:src="@drawable/ic_animation_cheese" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_fish"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="0.125"
-            android:src="@drawable/ic_fish" />
+            android:src="@drawable/ic_animation_fish" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_taco"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="0.125"
-            android:src="@drawable/ic_taco" />
+            android:src="@drawable/ic_animation_taco" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_watermelon"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="0.125"
-            android:src="@drawable/ic_watermelon" />
+            android:src="@drawable/ic_animation_watermelon" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/icon_hotdog"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_weight="0.125"
-            android:src="@drawable/ic_hot_dog" />
+            android:src="@drawable/ic_animation_hotdog" />
 
     </LinearLayout>
 
@@ -90,6 +90,7 @@
         android:layout_marginTop="70dp"
         android:onClick="mainIconClicked"
         app:cardElevation="20dp"
+        app:cardCornerRadius="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -98,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="30dp"
-            android:src="@drawable/icon_app"
+            android:src="@drawable/ic_login_app"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

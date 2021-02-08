@@ -22,28 +22,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/menu_maincard_human"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_margin="15dp"
                 app:cardBackgroundColor="@color/blue_standart"
                 app:cardElevation="15dp">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/menu_secondcard_human"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
                     android:layout_gravity="center"
                     app:cardElevation="20dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/user_imageview"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
                         android:layout_gravity="center" />
 
                 </com.google.android.material.card.MaterialCardView>
@@ -51,11 +53,11 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.textview.MaterialTextView
+                android:layout_marginEnd="15dp"
                 android:id="@+id/username_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="15dp"
                 android:fontFamily="@font/comfortaa_light"
                 android:text="@string/hint_login_edit"
                 android:textAlignment="textStart"
@@ -112,7 +114,7 @@
                         android:layout_marginHorizontal="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_weight="0.9"
-                        android:src="@drawable/ic_farm_products" />
+                        android:src="@drawable/ic_menu_grocery" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
@@ -155,7 +157,7 @@
                         android:layout_marginHorizontal="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_weight="0.9"
-                        android:src="@drawable/ic_recipes" />
+                        android:src="@drawable/ic_menu_recipes" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
@@ -185,7 +187,7 @@
                 android:onClick="menuShelfLifeButtonClicked"
                 app:cardBackgroundColor="@color/blue_standart"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="10dp">
+                app:cardElevation="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -198,7 +200,7 @@
                         android:layout_marginHorizontal="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_weight="0.9"
-                        android:src="@drawable/ic_calendar" />
+                        android:src="@drawable/ic_menu_shelflife" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"
@@ -227,7 +229,7 @@
                 android:onClick="menuCloudButtonClicked"
                 app:cardBackgroundColor="@color/gray"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="10dp">
+                app:cardElevation="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -240,7 +242,7 @@
                         android:layout_marginHorizontal="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_weight="0.9"
-                        android:src="@drawable/ic_upload" />
+                        android:src="@drawable/ic_menu_cloud" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="match_parent"

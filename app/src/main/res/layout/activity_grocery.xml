@@ -7,13 +7,10 @@
     tools:context=".GroceryActivity">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView3"
+        android:id="@+id/grocery_activity_top_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="15dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,26 +30,28 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/grocery_activity_freezer_button"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
                     android:layout_weight="0.5"
                     android:fontFamily="@font/comfortaa_light"
                     android:onClick="fridgeContentClicked"
                     android:text="@string/grocery_button_fridge"
+                    android:textSize="13sp"
                     app:backgroundTint="@color/blue_light"
                     app:cornerRadius="15dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/grocery_activity_fridge_button"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginTop="15dp"
                     android:layout_weight="0.5"
                     android:fontFamily="@font/comfortaa_light"
                     android:onClick="freezerContentClicked"
                     android:text="@string/grocery_button_freezer"
+                    android:textSize="13sp"
                     app:cornerRadius="15dp" />
 
             </LinearLayout>
@@ -106,20 +105,41 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/grocery_activity_fridge_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:fontFamily="@font/comfortaa_light"
+            android:gravity="center"
+            android:text="Добавление нового продукта"
+            android:textAlignment="center"
+            android:textColor="@color/blue_standart"
+            android:textSize="30sp" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/grocery_activity_fridge_card"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
         android:visibility="visible"
         app:cardCornerRadius="15dp"
         app:cardElevation="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView3">
+        app:layout_constraintTop_toBottomOf="@+id/grocery_activity_top_card">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -130,10 +150,10 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/comfortaa_light"
                 android:gravity="center"
-                android:layout_marginBottom="5dp"
-                android:text="@string/grocery_textview_list"
+                android:text="@string/grocery_textview_list_fridge"
                 android:textColor="@color/blue_standart"
                 android:textSize="20sp" />
 
@@ -141,6 +161,13 @@
                 android:id="@+id/recyclerview_fridge"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_freezer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </LinearLayout>
@@ -151,24 +178,32 @@
         android:id="@+id/grocery_activity_freezer_card"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="5dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
+        android:layout_margin="15dp"
         android:visibility="invisible"
         app:cardCornerRadius="15dp"
         app:cardElevation="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView3">
+        app:layout_constraintTop_toBottomOf="@+id/grocery_activity_top_card">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_freezer"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="15dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/comfortaa_light"
+                android:gravity="center"
+                android:text="@string/grocery_textview_list_freezer"
+                android:textColor="@color/blue_standart"
+                android:textSize="20sp" />
+
+        </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -178,10 +213,150 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="45dp"
         android:layout_marginBottom="45dp"
+        android:onClick="addNewProductClicked"
+        app:backgroundTint="@color/blue_light"
         app:elevation="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_plus"
+        app:srcCompat="@drawable/ic_floating_action_plus"
         app:tint="@color/white" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/grocery_activity_add_card"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:visibility="invisible"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/grocery_activity_top_card">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/grocery_activity_cancel_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="@font/comfortaa_light"
+                android:onClick="cancelAddButtonClicked"
+                android:text="@string/button_registration_cancel"
+                app:backgroundTint="@color/error"
+                app:cornerRadius="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/grocery_activity_textview1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/comfortaa_light"
+                android:gravity="center"
+                android:text="Тип добавляемого продукта"
+                android:textColor="@color/blue_standart"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@+id/grocery_activity_cancel_button"
+                tools:layout_editor_absoluteX="15dp" />
+
+            <RadioGroup
+                android:id="@+id/grocery_activity_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:checkedButton="@id/grocery_activity_radio_exist"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/grocery_activity_textview1">
+
+                <RadioButton
+                    android:id="@+id/grocery_activity_radio_exist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/comfortaa_light"
+                    android:onClick="existRadioButtonClicked"
+                    android:text="Выбрать из списка"
+                    android:textColor="@color/blue_standart" />
+
+                <RadioButton
+                    android:id="@+id/grocery_activity_radio_custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/comfortaa_light"
+                    android:onClick="customRadioButtonClicked"
+                    android:text="Добавить свой"
+                    android:textColor="@color/blue_standart" />
+
+            </RadioGroup>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/grocery_activity_type_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="@font/comfortaa_light"
+                android:hint="Введите тип продукта"
+                android:inputType="text"
+                android:textColor="@color/blue_standart"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/grocery_activity_radio_group" />
+
+            <Spinner
+                android:id="@+id/grocery_activity_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/grocery_activity_radio_group" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/grocery_activity_add_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/comfortaa_light"
+                android:onClick="createAddButtonClicked"
+                android:text="@string/button_registration_okay"
+                app:backgroundTint="@color/blue_standart"
+                app:cornerRadius="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

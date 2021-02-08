@@ -40,9 +40,6 @@ public class RegistrationActivity extends AppCompatActivity {
     private ImageView password_show_image;
     private ImageView password_repeat_show_image;
     private boolean error_message_showed = false;
-    //private final String pattern_final_password_spec = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=/.,!?<>{}*])(?=\\S+$).{8,}";
-    private final String pattern_final_password = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}";
-    private final String pattern_login = "(?=\\S+$).{3,}";
     private boolean password_show = false;
     private boolean password_repeat_show = false;
 
@@ -93,8 +90,11 @@ public class RegistrationActivity extends AppCompatActivity {
 
             if (checkExistingAccount()) {
 
+                String pattern_login = "(?=\\S+$).{3,}";
                 if (login_textfield.getText().toString().matches(pattern_login)) {
 
+                    //private final String pattern_final_password_spec = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=/.,!?<>{}*])(?=\\S+$).{8,}";
+                    String pattern_final_password = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}";
                     if (password_textfield.getText().toString().matches(pattern_final_password)) {
 
                         if (password_textfield.getText().toString().equals(password_repeat_textfield.getText().toString())) {
@@ -103,17 +103,15 @@ public class RegistrationActivity extends AppCompatActivity {
                             String name_sql = name_textfield.getText().toString();
 
                             SQLiteDatabase DataBase = getBaseContext().openOrCreateDatabase("data.db", MODE_PRIVATE, null);
-                            String SQLQuery = "CREATE TABLE IF NOT EXISTS users (login TEXT, pass TEXT, name TEXT, sex INTEGER)";
+                            String SQLQuery = "CREATE TABLE IF NOT EXISTS users (ID_USER INTEGER PRIMARY KEY AUTOINCREMENT, login TEXT, pass TEXT, name TEXT, sex INTEGER)";
                             DataBase.execSQL(SQLQuery);
-                            SQLQuery = "INSERT INTO users VALUES ( '" + login_sql + "', '" + password_sql + "', '" + name_sql + "', " + getSex() + ") ";
+                            SQLQuery = "INSERT INTO users (login, pass, name, sex) VALUES ('" + login_sql + "', '" + password_sql + "', '" + name_sql + "', " + getSex() + ") ";
                             DataBase.execSQL(SQLQuery);
                             DataBase.close();
-
                             saveAccount();
-
                             this.finish();
                             if (error_message_showed) {
-                                Animation animation = AnimationUtils.loadAnimation(this, R.anim.hide_error_message);
+                                Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_grocery_activity_hide_error_card);
                                 error_cardview.startAnimation(animation);
                                 error_cardview.setVisibility(View.INVISIBLE);
                             }
@@ -146,7 +144,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private boolean checkExistingAccount() {
         String login_sql = login_textfield.getText().toString();
         SQLiteDatabase DataBase = getBaseContext().openOrCreateDatabase("data.db", MODE_PRIVATE, null);
-        String SQLQuery = "CREATE TABLE IF NOT EXISTS users (login TEXT, pass TEXT, name TEXT , sex INTEGER)";
+        String SQLQuery = "CREATE TABLE IF NOT EXISTS users (ID_USER INTEGER PRIMARY KEY AUTOINCREMENT, login TEXT, pass TEXT, name TEXT , sex INTEGER)";
         DataBase.execSQL(SQLQuery);
         SQLQuery = "SELECT * FROM users WHERE (login = '" + login_sql + "')";
         Cursor query = DataBase.rawQuery(SQLQuery, null);
@@ -178,7 +176,7 @@ public class RegistrationActivity extends AppCompatActivity {
     public void errorMessageClicked(View view) {
         error_message_showed = false;
         error_cardview.setVisibility(View.INVISIBLE);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.hide_error_message);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_grocery_activity_hide_error_card);
         error_cardview.startAnimation(animation);
     }
 
@@ -187,12 +185,12 @@ public class RegistrationActivity extends AppCompatActivity {
         if (!error_message_showed) {
             error_message_showed = true;
             error_cardview.setVisibility(View.VISIBLE);
-            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.show_error_message);
+            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.anim_show_error_card);
             animation.setAnimationListener(new Animation.AnimationListener() {
 
                 @Override
                 public void onAnimationStart(Animation animation) {
-                    error_textview.setText("Ошибка:\n\nДанный логин уже занят");
+                    error_textview.setText(R.string.registration_login_exist_error);
                 }
 
                 @Override
@@ -206,7 +204,7 @@ public class RegistrationActivity extends AppCompatActivity {
             });
         } else {
             error_cardview.setVisibility(View.VISIBLE);
-            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.hide_error_message);
+            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.anim_grocery_activity_hide_error_card);
             animation.setAnimationListener(new Animation.AnimationListener() {
 
                 @Override
@@ -215,8 +213,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    error_textview.setText("Ошибка:\n\nДанный логин уже занят");
-                    animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.show_error_message);
+                    error_textview.setText(R.string.registration_login_exist_error);
+                    animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.anim_show_error_card);
                     error_cardview.startAnimation(animation);
                 }
 
@@ -234,7 +232,7 @@ public class RegistrationActivity extends AppCompatActivity {
         if (!error_message_showed) {
             error_message_showed = true;
             error_cardview.setVisibility(View.VISIBLE);
-            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.show_error_message);
+            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.anim_show_error_card);
             animation.setAnimationListener(new Animation.AnimationListener() {
 
                 @Override
@@ -253,7 +251,7 @@ public class RegistrationActivity extends AppCompatActivity {
             });
         } else {
             error_cardview.setVisibility(View.VISIBLE);
-            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.hide_error_message);
+            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.anim_grocery_activity_hide_error_card);
             animation.setAnimationListener(new Animation.AnimationListener() {
 
                 @Override
@@ -263,7 +261,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     error_textview.setText(R.string.registration_password_requirements_error);
-                    animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.show_error_message);
+                    animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.anim_show_error_card);
                     error_cardview.startAnimation(animation);
                 }
 
@@ -281,7 +279,7 @@ public class RegistrationActivity extends AppCompatActivity {
         if (!error_message_showed) {
             error_message_showed = true;
             error_cardview.setVisibility(View.VISIBLE);
-            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.show_error_message);
+            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.anim_show_error_card);
             animation.setAnimationListener(new Animation.AnimationListener() {
 
                 @Override
@@ -300,7 +298,7 @@ public class RegistrationActivity extends AppCompatActivity {
             });
         } else {
             error_cardview.setVisibility(View.VISIBLE);
-            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.hide_error_message);
+            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.anim_grocery_activity_hide_error_card);
             animation.setAnimationListener(new Animation.AnimationListener() {
 
                 @Override
@@ -310,7 +308,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     error_textview.setText(R.string.registration_length_error);
-                    animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.show_error_message);
+                    animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.anim_show_error_card);
                     error_cardview.startAnimation(animation);
                 }
 
@@ -328,7 +326,7 @@ public class RegistrationActivity extends AppCompatActivity {
         if (!error_message_showed) {
             error_message_showed = true;
             error_cardview.setVisibility(View.VISIBLE);
-            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.show_error_message);
+            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.anim_show_error_card);
             animation.setAnimationListener(new Animation.AnimationListener() {
 
                 @Override
@@ -347,7 +345,7 @@ public class RegistrationActivity extends AppCompatActivity {
             });
         } else {
             error_cardview.setVisibility(View.VISIBLE);
-            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.hide_error_message);
+            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.anim_grocery_activity_hide_error_card);
             animation.setAnimationListener(new Animation.AnimationListener() {
 
                 @Override
@@ -356,7 +354,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.show_error_message);
+                    animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.anim_show_error_card);
                     error_cardview.startAnimation(animation);
                     error_textview.setText(R.string.registration_empty_error);
                 }
@@ -375,7 +373,7 @@ public class RegistrationActivity extends AppCompatActivity {
         if (!error_message_showed) {
             error_message_showed = true;
             error_cardview.setVisibility(View.VISIBLE);
-            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.show_error_message);
+            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.anim_show_error_card);
             animation.setAnimationListener(new Animation.AnimationListener() {
 
                 @Override
@@ -394,7 +392,7 @@ public class RegistrationActivity extends AppCompatActivity {
             });
         } else {
             error_cardview.setVisibility(View.VISIBLE);
-            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.hide_error_message);
+            animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.anim_grocery_activity_hide_error_card);
             animation.setAnimationListener(new Animation.AnimationListener() {
 
                 @Override
@@ -404,7 +402,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     error_textview.setText(R.string.registration_repeat_error);
-                    animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.show_error_message);
+                    animation = AnimationUtils.loadAnimation(RegistrationActivity.this, R.anim.anim_show_error_card);
                     error_cardview.startAnimation(animation);
                 }
 
