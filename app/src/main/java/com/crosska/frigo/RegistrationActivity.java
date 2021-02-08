@@ -93,7 +93,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 String pattern_login = "(?=\\S+$).{3,}";
                 if (login_textfield.getText().toString().matches(pattern_login)) {
 
-                    //private final String pattern_final_password_spec = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=/.,!?<>{}*])(?=\\S+$).{8,}";
                     String pattern_final_password = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}";
                     if (password_textfield.getText().toString().matches(pattern_final_password)) {
 
