@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -21,9 +22,9 @@ public class GroceryRecyclerStateAdapter extends RecyclerView.Adapter<GroceryRec
         this.inflater = LayoutInflater.from(context);
     }
 
+    @NonNull
     @Override
     public GroceryRecyclerStateAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View view = inflater.inflate(R.layout.grocery_recycler_list_item, parent, false);
         return new ViewHolder(view);
     }
@@ -46,8 +47,8 @@ public class GroceryRecyclerStateAdapter extends RecyclerView.Adapter<GroceryRec
 
         ViewHolder(View view) {
             super(view);
-            foodView = (ImageView) view.findViewById(R.id.list_imageview_food);
-            nameView = (TextView) view.findViewById(R.id.list_textview_foodname);
+            foodView = view.findViewById(R.id.list_imageview_food);
+            nameView = view.findViewById(R.id.list_textview_foodname);
         }
     }
 

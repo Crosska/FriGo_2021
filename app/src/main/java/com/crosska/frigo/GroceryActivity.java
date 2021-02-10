@@ -47,7 +47,21 @@ public class GroceryActivity extends AppCompatActivity {
     private EditText type_edittext;
     private EditText product_custom_name_edittext;
     private EditText product_exist_name_edittext;
-    private final String[] countries = {"Мясопродукты", "Морепродукты", "Овощи", "Фрукты", "Хлебобулочные", "Крупы", "Кондитерские", "Соусы", "Жиры", "Молочные", "Яйца", "Грибы", "Напитки"};
+    private final String[] countries = {
+            "Жиры",
+            "Грибы",
+            "Кондитерские",
+            "Консервы",
+            "Крупы",
+            "Молочные",
+            "Морепродукты",
+            "Мясопродукты",
+            "Напитки",
+            "Овощи",
+            "Соусы",
+            "Фрукты",
+            "Хлебобулочные",
+            "Яйца"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +69,12 @@ public class GroceryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grocery);
         Objects.requireNonNull(this.getSupportActionBar()).hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         setInitialData();
         RecyclerView recyclerView = findViewById(R.id.recyclerview_fridge);
         GroceryRecyclerStateAdapter adapter = new GroceryRecyclerStateAdapter(this, states);
         recyclerView.setAdapter(adapter);
+
         search_edittext = findViewById(R.id.grocery_activity_search_textedit);
         fridge_button = findViewById(R.id.grocery_activity_fridge_button);
         freezer_button = findViewById(R.id.grocery_activity_freezer_button);
@@ -75,7 +91,6 @@ public class GroceryActivity extends AppCompatActivity {
         product_custom_name_edittext = findViewById(R.id.grocery_activity_custom_product_name_edittext);
         product_exist_name_edittext = findViewById(R.id.grocery_activity_exist_product_name_edittext);
 
-        ArrayAdapter<String> adapter_spinner = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, countries);
         myFont = Typeface.createFromAsset(getAssets(), "comfortaa_light.ttf");
         MyArrayAdapter ma = new MyArrayAdapter(this);
         product_type_spinner.setAdapter(ma);

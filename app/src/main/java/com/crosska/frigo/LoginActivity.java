@@ -39,20 +39,47 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         Objects.requireNonNull(this.getSupportActionBar()).hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         login_bar = findViewById(R.id.login_edit_text_group);
         login_edit_text = findViewById(R.id.login_activity_login_text_edit);
         password_edit_text = findViewById(R.id.login_activity_password_text_edit);
         error_cardview = findViewById(R.id.login_activity_error_card);
+        AnimateBackground();
+    }
+
+    private void AnimateBackground() {
+        ImageView food_icon;
+        food_icon = findViewById(R.id.icon_apple);
+        startNewAnimation(food_icon);
+        food_icon = findViewById(R.id.icon_banana);
+        startNewAnimation(food_icon);
+        food_icon = findViewById(R.id.icon_bread);
+        startNewAnimation(food_icon);
+        food_icon = findViewById(R.id.icon_cheese);
+        startNewAnimation(food_icon);
+        food_icon = findViewById(R.id.icon_fish);
+        startNewAnimation(food_icon);
+        food_icon = findViewById(R.id.icon_taco);
+        startNewAnimation(food_icon);
+        food_icon = findViewById(R.id.icon_watermelon);
+        startNewAnimation(food_icon);
+        food_icon = findViewById(R.id.icon_hotdog);
+        startNewAnimation(food_icon);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
         saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
         if (saved_data.getBoolean("ACCOUNT_LOGGED", false)) {
             Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
             startActivity(intent);
         }
+
+        login_edit_text.setText("");
+        password_edit_text.setText("");
+
     }
 
     /*private void getPermissions() {
@@ -91,28 +118,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }*/
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        ImageView food_icon;
-        food_icon = findViewById(R.id.icon_apple);
-        startNewAnimation(food_icon);
-        food_icon = findViewById(R.id.icon_banana);
-        startNewAnimation(food_icon);
-        food_icon = findViewById(R.id.icon_bread);
-        startNewAnimation(food_icon);
-        food_icon = findViewById(R.id.icon_cheese);
-        startNewAnimation(food_icon);
-        food_icon = findViewById(R.id.icon_fish);
-        startNewAnimation(food_icon);
-        food_icon = findViewById(R.id.icon_taco);
-        startNewAnimation(food_icon);
-        food_icon = findViewById(R.id.icon_watermelon);
-        startNewAnimation(food_icon);
-        food_icon = findViewById(R.id.icon_hotdog);
-        startNewAnimation(food_icon);
-    }
-
     private void startNewAnimation(ImageView food_icon) {
         Random rand = new Random();
         int delay = rand.nextInt(4000);
@@ -144,7 +149,7 @@ public class LoginActivity extends AppCompatActivity {
     public void backgroundClicked(View view) {
         if (login_card_showed) {
             login_bar.setVisibility(View.INVISIBLE);
-            Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_login_activity_hide_login_card);
+            Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_hide_smooth_alpha);
             login_bar.startAnimation(animation);
             login_card_showed = false;
         }
@@ -195,10 +200,10 @@ public class LoginActivity extends AppCompatActivity {
             if (!error_message_showed) {
                 error_message_showed = true;
                 error_cardview.setVisibility(View.VISIBLE);
-                animation = AnimationUtils.loadAnimation(this, R.anim.anim_show_error_card);
+                animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_show_smooth_alpha);
             } else {
                 error_cardview.setVisibility(View.VISIBLE);
-                animation = AnimationUtils.loadAnimation(this, R.anim.anim_grocery_activity_hide_error_card);
+                animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_hide_smooth_alpha);
                 animation.setAnimationListener(new Animation.AnimationListener() {
 
                     @Override
@@ -208,7 +213,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        animation = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.anim_show_error_card);
+                        animation = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.anim_global_show_smooth_alpha);
                         error_cardview.startAnimation(animation);
                     }
 
@@ -237,17 +242,6 @@ public class LoginActivity extends AppCompatActivity {
         food_icon.setVisibility(View.VISIBLE);
         Animation animation_move = AnimationUtils.loadAnimation(this, R.anim.anim_login_activity_food_moving);
         food_icon.startAnimation(animation_move);
-    }
-
-    private boolean checkActiveAccount() {
-        SharedPreferences saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
-        String recent_login = saved_data.getString("LOGIN", "null");
-        if (!recent_login.equals("null")) {
-            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-            startActivity(intent);
-            return true;
-        }
-        return false;
     }
 
     @Override

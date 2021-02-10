@@ -6,7 +6,6 @@ import android.content.pm.ActivityInfo;
 import android.content.res.AssetManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
@@ -46,40 +45,8 @@ public class SplashActivity extends AppCompatActivity {
 
             } else {
 
-                SQLiteDatabase DataBase = getBaseContext().openOrCreateDatabase("data.db", MODE_PRIVATE, null);
-                String SQLQuery = "CREATE TABLE IF NOT EXISTS Users (" +
-                        "Login TEXT PRIMARY KEY, " +
-                        "Pass TEXT, " +
-                        "Name TEXT , " +
-                        "Sex INTEGER )";
-                DataBase.execSQL(SQLQuery);
-                SQLQuery = "CREATE TABLE IF NOT EXISTS Fridge (" +
-                        "ID_FOOD INTEGER PRIMARY KEY AUTOINCREMENT , " +
-                        "Login TEXT, " +
-                        "ID_PRODUCT INTEGER, " +
-                        "Count INTEGER, " +
-                        "ShelfData DATETIME, " +
-                        "AddInfo TEXT, " +
-                        "FOREIGN KEY(Login) REFERENCES users(Login) )";
-                DataBase.execSQL(SQLQuery);
-                SQLQuery = "CREATE TABLE IF NOT EXISTS Freezer (" +
-                        "ID_FOOD INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "Login TEXT, " +
-                        "ID_PRODUCT INTEGER, " +
-                        "Count INTEGER, " +
-                        "AddInfo TEXT, " +
-                        "FOREIGN KEY(Login) REFERENCES users(Login) )";
-                DataBase.execSQL(SQLQuery);
-                SQLQuery = "CREATE TABLE IF NOT EXISTS Dict_product (" +
-                        "ID_PRODUCT INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "Type TEXT, " +
-                        "Name TEXT, " +
-                        "FOREIGN KEY(ID_PRODUCT) REFERENCES fridge(ID_PRODUCT), " +
-                        "FOREIGN KEY(ID_PRODUCT) REFERENCES freezer(ID_PRODUCT) )";
-                DataBase.execSQL(SQLQuery);
-                DataBase.close();
-
-                insertDataProduct();
+                createDatabase();
+                insertToDatabase();
 
                 saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
                 SharedPreferences.Editor ed = saved_data.edit();
@@ -121,7 +88,7 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
-    private void insertDataProduct() {
+    private void insertToDatabase() {
         try {
             AssetManager assetManager = this.getAssets();
             InputStreamReader istream = new InputStreamReader(assetManager.open("products_names.txt"));
@@ -140,5 +107,40 @@ public class SplashActivity extends AppCompatActivity {
             Toast.makeText(this, "Критическая ошибка!\nНе найдены необходимые системные файлы", Toast.LENGTH_LONG).show();
             this.finishAffinity();
         }
+    }
+
+    private void createDatabase() {
+        SQLiteDatabase DataBase = getBaseContext().openOrCreateDatabase("data.db", MODE_PRIVATE, null);
+        String SQLQuery = "CREATE TABLE IF NOT EXISTS Users (" +
+                "Login TEXT PRIMARY KEY, " +
+                "Pass TEXT, " +
+                "Name TEXT , " +
+                "Sex INTEGER )";
+        DataBase.execSQL(SQLQuery);
+        SQLQuery = "CREATE TABLE IF NOT EXISTS Fridge (" +
+                "ID_FOOD INTEGER PRIMARY KEY AUTOINCREMENT , " +
+                "Login TEXT, " +
+                "ID_PRODUCT INTEGER, " +
+                "Count INTEGER, " +
+                "ShelfData DATETIME, " +
+                "AddInfo TEXT, " +
+                "FOREIGN KEY(Login) REFERENCES users(Login) )";
+        DataBase.execSQL(SQLQuery);
+        SQLQuery = "CREATE TABLE IF NOT EXISTS Freezer (" +
+                "ID_FOOD INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "Login TEXT, " +
+                "ID_PRODUCT INTEGER, " +
+                "Count INTEGER, " +
+                "AddInfo TEXT, " +
+                "FOREIGN KEY(Login) REFERENCES users(Login) )";
+        DataBase.execSQL(SQLQuery);
+        SQLQuery = "CREATE TABLE IF NOT EXISTS Dict_product (" +
+                "ID_PRODUCT INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "Type TEXT, " +
+                "Name TEXT, " +
+                "FOREIGN KEY(ID_PRODUCT) REFERENCES fridge(ID_PRODUCT), " +
+                "FOREIGN KEY(ID_PRODUCT) REFERENCES freezer(ID_PRODUCT) )";
+        DataBase.execSQL(SQLQuery);
+        DataBase.close();
     }
 }

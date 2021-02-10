@@ -36,13 +36,9 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText name_textfield;
     private CardView error_cardview;
     private TextView error_textview;
-    private MaterialCardView maincard_human;
-    private MaterialCardView secondcard_human;
     private ImageView password_show_image;
-    private ImageView password_repeat_show_image;
     private boolean error_message_showed = false;
     private boolean password_show = false;
-    private boolean password_repeat_show = false;
 
     /*
     (?=.*[0-9]) цифра должна появляться по крайней мере один раз
@@ -59,6 +55,7 @@ public class RegistrationActivity extends AppCompatActivity {
         Objects.requireNonNull(this.getSupportActionBar()).hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_registration);
+
         womanRadioButton = findViewById(R.id.woman_radiobutton);
         manRadioButton = findViewById(R.id.man_radiobutton);
         otherRadioButton = findViewById(R.id.other_radiobutton);
@@ -69,17 +66,7 @@ public class RegistrationActivity extends AppCompatActivity {
         error_cardview = findViewById(R.id.error_message_cardview);
         error_textview = findViewById(R.id.error_message_textview);
         scrollview = findViewById(R.id.scroll_main);
-        maincard_human = findViewById(R.id.registry_maincard_human);
-        secondcard_human = findViewById(R.id.registry_secondcard_human);
         password_show_image = findViewById(R.id.password_eye);
-        password_repeat_show_image = findViewById(R.id.password_repeat_eye);
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        maincard_human.setRadius((float) maincard_human.getWidth() / 2);
-        secondcard_human.setRadius((float) secondcard_human.getWidth() / 2);
     }
 
     public void cancelButtonClicked(View view) {
@@ -108,6 +95,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             SQLQuery = "INSERT INTO users (login, pass, name, sex) VALUES ('" + login_sql + "', '" + password_sql + "', '" + name_sql + "', " + getSex() + ") ";
                             DataBase.execSQL(SQLQuery);
                             DataBase.close();
+
                             saveAccount();
                             this.finish();
                         } else {
@@ -171,7 +159,7 @@ public class RegistrationActivity extends AppCompatActivity {
     public void errorMessageClicked(View view) {
         error_message_showed = false;
         error_cardview.setVisibility(View.INVISIBLE);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_grocery_activity_hide_error_card);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_hide_smooth_alpha);
         error_cardview.startAnimation(animation);
     }
 
@@ -443,20 +431,6 @@ public class RegistrationActivity extends AppCompatActivity {
             password_textfield.setTransformationMethod(PasswordTransformationMethod.getInstance());
             int id = getResources().getIdentifier("com.crosska.frigo:drawable/ic_eye_off", null, null);
             password_show_image.setImageResource(id);
-        }
-    }
-
-    public void showPasswordRepeat(View view) {
-        if (!password_repeat_show) {
-            password_repeat_show = true;
-            password_repeat_textfield.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            int id = getResources().getIdentifier("com.crosska.frigo:drawable/ic_eye_on", null, null);
-            password_repeat_show_image.setImageResource(id);
-        } else {
-            password_repeat_show = false;
-            password_repeat_textfield.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            int id = getResources().getIdentifier("com.crosska.frigo:drawable/ic_eye_off", null, null);
-            password_repeat_show_image.setImageResource(id);
         }
     }
 }

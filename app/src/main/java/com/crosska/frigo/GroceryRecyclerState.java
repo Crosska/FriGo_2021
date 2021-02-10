@@ -2,8 +2,8 @@ package com.crosska.frigo;
 
 public class GroceryRecyclerState {
 
-    private String food_name; // название
-    private int food_image; // ресурс флага
+    private String food_name; // Наименование еды
+    private int food_image; // Картинка еды
 
     public GroceryRecyclerState(int food_image, String food_name) {
 
