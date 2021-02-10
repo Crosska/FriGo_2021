@@ -4,12 +4,13 @@
     android:layout_margin="5dp">
 
     <TextView
+        android:layout_marginStart="5dp"
+        android:textAlignment="textStart"
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="2dp"
         android:fontFamily="@font/comfortaa_light"
-        android:gravity="center"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/blue_standart" />

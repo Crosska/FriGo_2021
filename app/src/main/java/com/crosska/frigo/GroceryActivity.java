@@ -1,6 +1,5 @@
 package com.crosska.frigo;
 
-import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -149,14 +146,35 @@ public class GroceryActivity extends AppCompatActivity {
     }
 
     public void addNewProductClicked(View view) {
-        type_edittext.setText("");
-        product_custom_name_edittext.setText("");
-        product_exist_name_edittext.setText("");
-        add_new_product_button.setClickable(true);
-        cancel_new_product_button.setClickable(true);
-        radio_group.check(R.id.grocery_activity_radio_exist);
-        f_button.setEnabled(false);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_grocery_activity_hide_top_card);
+        type_edittext.setText(""); // Очистка поля типа продукта
+        product_custom_name_edittext.setText(""); // Очистка поля своего наименования продукта
+        product_exist_name_edittext.setText(""); // Очистка поля заданного наименования продукта
+        add_new_product_button.setClickable(true); // Активация кнопки "Готово"
+        cancel_new_product_button.setClickable(true); // Активация кнопки "Отмена"
+        radio_group.check(R.id.grocery_activity_radio_exist); // Выбор радио-кнопки
+        f_button.setEnabled(false); // Деактивация float action button
+
+        product_type_spinner.setSelection(0); // Выбор первого элемента спиннера
+
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_show_smooth_alpha);
+        product_type_spinner.setEnabled(true); // Активация спиннера
+        product_type_spinner.setVisibility(View.VISIBLE);
+        product_type_spinner.startAnimation(animation);
+
+        product_exist_name_edittext.setEnabled(true); // Активация поля заданного наименования
+        product_exist_name_edittext.setVisibility(View.VISIBLE);
+        product_exist_name_edittext.startAnimation(animation);
+
+        animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_hide_smooth_alpha);
+        type_edittext.setEnabled(false); // Деактивация поля своего типа
+        type_edittext.setVisibility(View.INVISIBLE);
+        type_edittext.startAnimation(animation);
+
+        product_custom_name_edittext.setEnabled(false); // Деактивация поля своего типа
+        product_custom_name_edittext.setVisibility(View.INVISIBLE);
+        product_custom_name_edittext.startAnimation(animation);
+
+        animation = AnimationUtils.loadAnimation(this, R.anim.anim_grocery_activity_hide_top_card);
         top_card.setVisibility(View.INVISIBLE);
         top_card.startAnimation(animation);
         animation = AnimationUtils.loadAnimation(this, R.anim.anim_grocery_activity_hide_floating_button);
@@ -186,7 +204,6 @@ public class GroceryActivity extends AppCompatActivity {
         query.close();
         DataBase.close();*/
     }
-
 
     public void existRadioButtonClicked(View view) {
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_show_smooth_alpha);

@@ -50,21 +50,21 @@ public class LoginActivity extends AppCompatActivity {
     private void AnimateBackground() {
         ImageView food_icon;
         food_icon = findViewById(R.id.icon_apple);
-        startNewAnimation(food_icon);
+        moveFoodIcon(food_icon);
         food_icon = findViewById(R.id.icon_banana);
-        startNewAnimation(food_icon);
+        moveFoodIcon(food_icon);
         food_icon = findViewById(R.id.icon_bread);
-        startNewAnimation(food_icon);
+        moveFoodIcon(food_icon);
         food_icon = findViewById(R.id.icon_cheese);
-        startNewAnimation(food_icon);
+        moveFoodIcon(food_icon);
         food_icon = findViewById(R.id.icon_fish);
-        startNewAnimation(food_icon);
+        moveFoodIcon(food_icon);
         food_icon = findViewById(R.id.icon_taco);
-        startNewAnimation(food_icon);
+        moveFoodIcon(food_icon);
         food_icon = findViewById(R.id.icon_watermelon);
-        startNewAnimation(food_icon);
+        moveFoodIcon(food_icon);
         food_icon = findViewById(R.id.icon_hotdog);
-        startNewAnimation(food_icon);
+        moveFoodIcon(food_icon);
     }
 
     @Override
@@ -73,6 +73,12 @@ public class LoginActivity extends AppCompatActivity {
 
         saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
         if (saved_data.getBoolean("ACCOUNT_LOGGED", false)) {
+            if (login_card_showed) {
+                login_bar.setVisibility(View.INVISIBLE);
+                Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_hide_smooth_alpha);
+                login_bar.startAnimation(animation);
+                login_card_showed = false;
+            }
             Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
             startActivity(intent);
         }
@@ -117,17 +123,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }*/
-
-    private void startNewAnimation(ImageView food_icon) {
-        Random rand = new Random();
-        int delay = rand.nextInt(4000);
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                LoginActivity.this.runOnUiThread(() -> moveFoodIcon(food_icon));
-            }
-        }, delay);
-    }
 
     public void registerButtonClicked(View view) {
         //if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
@@ -193,8 +188,16 @@ public class LoginActivity extends AppCompatActivity {
             ed.apply();
             ed.putBoolean("ACCOUNT_LOGGED", true);
             ed.apply();
+
+            if (login_card_showed) {
+                login_bar.setVisibility(View.INVISIBLE);
+                Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_global_hide_smooth_alpha);
+                login_bar.startAnimation(animation);
+                login_card_showed = false;
+            }
             Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
             startActivity(intent);
+
         } else {
             Animation animation;
             if (!error_message_showed) {
@@ -239,9 +242,23 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void moveFoodIcon(ImageView food_icon) {
-        food_icon.setVisibility(View.VISIBLE);
-        Animation animation_move = AnimationUtils.loadAnimation(this, R.anim.anim_login_activity_food_moving);
-        food_icon.startAnimation(animation_move);
+        Random rand = new Random();
+        int delay = rand.nextInt(4000);
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                LoginActivity.this.runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        food_icon.setVisibility(View.VISIBLE);
+                        Animation animation_move = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.anim_login_activity_food_moving);
+                        food_icon.startAnimation(animation_move);
+                    }
+
+                });
+            }
+        }, delay);
     }
 
     @Override
