@@ -127,7 +127,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginStart="10dp"
                 android:layout_marginBottom="20dp"
                 android:visibility="visible"
                 app:cardCornerRadius="17dp"
@@ -151,21 +150,23 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa_light"
+                            android:paddingBottom="15dp"
                             android:text="Параметры"
                             android:textAlignment="center"
                             android:textColor="@color/blue_standart"
-                            android:textSize="25sp"
-                            android:paddingBottom="15dp"/>
+                            android:textSize="25sp" />
+
 
                         <com.google.android.material.button.MaterialButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/blue_standart"
                             android:fontFamily="@font/comfortaa_light"
-                            android:paddingVertical="11dp"
                             android:onClick="sendDevReportButtonClicked"
+                            android:paddingVertical="11dp"
                             android:text="Отправить отчёт об ошибке"
-                            app:cornerRadius="15dp" />
+                            app:cornerRadius="15dp"
+                            app:elevation="15dp" />
 
                         <com.google.android.material.button.MaterialButton
                             android:layout_width="match_parent"
@@ -176,7 +177,8 @@
                             android:onClick="eraseAllButtonClicked"
                             android:paddingVertical="11dp"
                             android:text="Очистить все данные"
-                            app:cornerRadius="15dp" />
+                            app:cornerRadius="15dp"
+                            app:elevation="15dp" />
 
                     </LinearLayout>
 
@@ -189,58 +191,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="20dp"
-                android:visibility="invisible"
-                app:cardCornerRadius="17dp"
-                app:cardElevation="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/linear1">
-
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">\
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/comfortaa_light"
-                            android:text="Аккаунт"
-                            android:textAlignment="center"
-                            android:textColor="@color/blue_standart"
-                            android:textSize="25sp"
-                            android:paddingBottom="15dp"/>
-
-                        <com.google.android.material.button.MaterialButton
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
-                            android:backgroundTint="@color/blue_standart"
-                            android:fontFamily="@font/comfortaa_light"
-                            android:paddingVertical="11dp"
-                            android:text="Очистить все данные"
-                            app:cornerRadius="15dp" />
-
-                    </LinearLayout>
-
-                </ScrollView>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/settings_info_cardview"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginStart="10dp"
                 android:layout_marginBottom="20dp"
                 android:visibility="invisible"
                 app:cardCornerRadius="17dp"
@@ -264,21 +214,248 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/comfortaa_light"
-                            android:text="О приложении"
+                            android:paddingBottom="15dp"
+                            android:text="Аккаунт"
                             android:textAlignment="center"
                             android:textColor="@color/blue_standart"
-                            android:textSize="25sp"
-                            android:paddingBottom="15dp"/>
+                            android:textSize="25sp" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="20dp"
+                            app:cardBackgroundColor="@color/blue_standart"
+                            app:cardCornerRadius="75dp"
+                            app:cardElevation="10dp">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/registry_secondcard_human"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="5dp"
+                                app:cardCornerRadius="60dp"
+                                app:cardElevation="20dp">
+
+                                <com.google.android.material.imageview.ShapeableImageView
+                                    android:id="@+id/settings_account_user_logo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="3dp"
+                                    android:padding="5dp" />
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/settings_account_user_login"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa_light"
+                            android:paddingHorizontal="10dp"
+                            android:paddingBottom="5dp"
+                            android:textAlignment="center"
+                            android:textColor="@color/blue_standart"
+                            android:textSize="25sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingBottom="5dp">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/comfortaa_light"
+                                android:text="Имя:"
+                                android:textAlignment="center"
+                                android:textColor="@color/blue_standart"
+                                android:textSize="20sp" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/settings_account_user_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/comfortaa_light"
+                                android:paddingHorizontal="5dp"
+                                android:text="null"
+                                android:textAlignment="center"
+                                android:textColor="@color/blue_standart"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/settings_account_new_user_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa_light"
+                            android:hint="Новое имя"
+                            android:textColor="@color/blue_standart" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/comfortaa_light"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:text="Пол:"
+                            android:textAlignment="center"
+                            android:textColor="@color/blue_standart"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/settings_account_user_sex_0"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/comfortaa_light"
+                                android:text="Мужской"
+                                android:textColor="@color/blue_standart" />
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/settings_account_user_sex_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/comfortaa_light"
+                                android:text="Женский"
+                                android:textColor="@color/blue_standart" />
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:id="@+id/settings_account_user_sex_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/comfortaa_light"
+                                android:text="Не скажу"
+                                android:textColor="@color/blue_standart" />
+
+                        </RadioGroup>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:layout_marginVertical="10dp"
+                            android:backgroundTint="@color/blue_standart"
+                            app:cardCornerRadius="15dp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa_light"
+                            android:text="Чтобы применить изменения введите текущий пароль"
+                            android:textAlignment="center"
+                            android:textColor="@color/blue_standart"
+                            android:textSize="15sp" />
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/settings_account_user_current_pass"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa_light"
+                            android:hint="Текущий пароль"
+                            android:inputType="textPassword"
+                            android:textColor="@color/blue_standart"
+                            android:textSize="17sp" />
 
                         <com.google.android.material.button.MaterialButton
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
-                            android:backgroundTint="@color/black"
+                            android:layout_marginHorizontal="2dp"
+                            android:layout_marginVertical="10dp"
                             android:fontFamily="@font/comfortaa_light"
-                            android:paddingVertical="11dp"
-                            android:text="Очистить все данные"
-                            app:cornerRadius="15dp" />
+                            android:onClick="applyNewDataButtonClicked"
+                            android:text="Применить"
+                            app:cornerRadius="15dp"
+                            app:elevation="15dp" />
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/settings_info_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="20dp"
+                android:visibility="invisible"
+                app:cardCornerRadius="17dp"
+                app:cardElevation="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linear1">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa_light"
+                            android:paddingBottom="15dp"
+                            android:text="О приложении"
+                            android:textAlignment="center"
+                            android:textColor="@color/blue_standart"
+                            android:textSize="25sp" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/settings_activity_app_cardview"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="15dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="30dp"
+                            app:cardCornerRadius="100dp"
+                            app:cardElevation="15dp">
+
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="30dp"
+                                android:src="@drawable/ic_login_app" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/comfortaa_light"
+                            android:paddingBottom="10dp"
+                            android:text="@string/app_name"
+                            android:textColor="@color/blue_standart"
+                            android:textSize="30sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Приложение разработано Crosska inc.\nВерсия приложения: 0.8.5\nВсе права защищены"
+                            android:textAlignment="center"
+                            android:textColor="@color/blue_standart" />
 
                     </LinearLayout>
 

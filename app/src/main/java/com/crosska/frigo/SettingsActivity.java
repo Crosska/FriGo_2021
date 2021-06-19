@@ -3,17 +3,22 @@ package com.crosska.frigo;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.textview.MaterialTextView;
 
 import java.util.Objects;
 
@@ -22,6 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
     ImageView settings_img;
     ImageView account_img;
     ImageView info_img;
+    ImageView user_logo;
     MaterialCardView settings_card;
     MaterialCardView account_card;
     MaterialCardView info_card;
@@ -29,6 +35,14 @@ public class SettingsActivity extends AppCompatActivity {
     MaterialCardView account_page;
     MaterialCardView info_page;
     MaterialCardView current_page;
+    MaterialCardView logo_cardview;
+    MaterialTextView user_login;
+    MaterialTextView user_name;
+    EditText user_name_new;
+    EditText current_pass;
+    RadioButton radioButton_man;
+    RadioButton radioButton_woman;
+    RadioButton radioButton_other;
 
     boolean settings = true;
     boolean account = false;
@@ -50,6 +64,16 @@ public class SettingsActivity extends AppCompatActivity {
         settings_page = findViewById(R.id.settings_app_cardview);
         account_page = findViewById(R.id.settings_account_cardview);
         info_page = findViewById(R.id.settings_info_cardview);
+        logo_cardview = findViewById(R.id.settings_activity_app_cardview);
+        user_logo = findViewById(R.id.settings_account_user_logo);
+        user_login = findViewById(R.id.settings_account_user_login);
+        user_name_new = findViewById(R.id.settings_account_new_user_name);
+        current_pass = findViewById(R.id.settings_account_user_current_pass);
+        radioButton_man = findViewById(R.id.settings_account_user_sex_0);
+        radioButton_woman = findViewById(R.id.settings_account_user_sex_1);
+        radioButton_other = findViewById(R.id.settings_account_user_sex_2);
+        user_name = findViewById(R.id.settings_account_user_name);
+
 
         // Установка цвета и иконок кнопок
         settings_card.setCardBackgroundColor(getResources().getColor(R.color.blue_standart));
@@ -67,6 +91,8 @@ public class SettingsActivity extends AppCompatActivity {
         animation = AnimationUtils.loadAnimation(SettingsActivity.this, R.anim.anim_settings_activity_show_page);
         settings_page.startAnimation(animation);
         settings_page.setVisibility(View.VISIBLE);
+        animation = AnimationUtils.loadAnimation(SettingsActivity.this, R.anim.anim_settings_activity_logo_rotate);
+        logo_cardview.startAnimation(animation);
 
     }
 
@@ -165,6 +191,26 @@ public class SettingsActivity extends AppCompatActivity {
 
             current_page = account_page;
 
+            SharedPreferences saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
+            switch (saved_data.getInt("SEX", 0)) {
+                case 0:
+                    user_logo.setImageResource(R.drawable.ic_user_man);
+                    radioButton_man.setChecked(true);
+                    break;
+                case 1:
+                    user_logo.setImageResource(R.drawable.ic_user_woman);
+                    radioButton_woman.setChecked(true);
+                    break;
+                case 2:
+                    user_logo.setImageResource(R.drawable.ic_user_alien);
+                    radioButton_other.setChecked(true);
+                    break;
+                default:
+                    break;
+            }
+            user_login.setText(saved_data.getString("LOGIN", "null"));
+            user_name.setText(saved_data.getString("NAME", "null"));
+
         } else {
             Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_settings_activity_card_shake);
             account_card.startAnimation(animation);
@@ -247,9 +293,9 @@ public class SettingsActivity extends AppCompatActivity {
         // Зачем
         SharedPreferences saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
         String user = saved_data.getString("LOGIN", "");
-        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Отчёт по приложению FriGo" + user);
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Отчёт по приложению FriGo");
         // О чём
-        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Отчёт:\n");
+        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Пользователь:" + user + "\nОписание отчёта:\n");
         // С чем
         /*emailIntent.putExtra(
                 android.content.Intent.EXTRA_STREAM,
@@ -261,5 +307,45 @@ public class SettingsActivity extends AppCompatActivity {
         // Поехали!
         SettingsActivity.this.startActivity(Intent.createChooser(emailIntent,
                 "Отправка письма..."));
+    }
+
+    public void applyNewDataButtonClicked(View view) {
+        String pass = "null";
+        SQLiteDatabase DataBase = getBaseContext().openOrCreateDatabase("data.db", MODE_PRIVATE, null);
+        String SQLQuery = "SELECT Pass FROM Users WHERE (Login = '" + user_login.getText().toString() + "')";
+        Cursor query = DataBase.rawQuery(SQLQuery, null);
+        if (query.moveToFirst()) {
+            pass = query.getString(0);
+        }
+        query.close();
+        DataBase.close();
+        if (current_pass.getText().toString().equals(pass)) {
+            int new_sex;
+            if (radioButton_man.isChecked()) {
+                new_sex = 0;
+            } else if (radioButton_woman.isChecked()) {
+                new_sex = 1;
+            } else {
+                new_sex = 2;
+            }
+            String new_name = user_name_new.getText().toString();
+            DataBase = getBaseContext().openOrCreateDatabase("data.db", MODE_PRIVATE, null);
+            SQLQuery = "UPDATE Users SET Name = '" + new_name + "', Sex = " + new_sex + " WHERE Login = '" + user_login + "';";
+            DataBase.execSQL(SQLQuery);
+            DataBase.close();
+
+            SharedPreferences saved_data = getSharedPreferences("user_data", MODE_PRIVATE);
+            SharedPreferences.Editor ed = saved_data.edit();
+            ed.putString("NAME", new_name);
+            ed.apply();
+            ed.putInt("SEX", new_sex);
+            ed.apply();
+
+            Toast.makeText(this, "Данные аккаунта успешно обновлены", Toast.LENGTH_LONG).show();
+            this.finish();
+
+        } else {
+            Toast.makeText(this, "Вы ввели неправильный пароль", Toast.LENGTH_SHORT).show();
+        }
     }
 }
