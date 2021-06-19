@@ -46,69 +46,247 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView3">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
+                android:id="@+id/linear1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:cardCornerRadius="15dp">
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/settings_app_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="0.3"
+                    android:onClick="settingsAppButtonClicked"
+                    app:cardCornerRadius="17dp"
+                    app:cardElevation="15dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/settings_app_image"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/ic_settings_app_gear" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/settings_account_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="0.3"
+                    android:onClick="settingsAccountButtonClicked"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="15dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/settings_account_image"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/ic_settings_account" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/settings_info_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="0.3"
+                    android:onClick="settingsInfoButtonClicked"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="15dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/settings_info_image"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/ic_settings_info" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/settings_app_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="20dp"
+                android:visibility="visible"
+                app:cardCornerRadius="17dp"
+                app:cardElevation="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linear1">
+
+                <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_margin="10dp">
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        app:cardCornerRadius="17dp">
+                        android:orientation="vertical">
 
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_margin="5dp" />
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa_light"
+                            android:text="Параметры"
+                            android:textAlignment="center"
+                            android:textColor="@color/blue_standart"
+                            android:textSize="25sp"
+                            android:paddingBottom="15dp"/>
 
-                    </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.button.MaterialButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/blue_standart"
+                            android:fontFamily="@font/comfortaa_light"
+                            android:paddingVertical="11dp"
+                            android:onClick="sendDevReportButtonClicked"
+                            android:text="Отправить отчёт об ошибке"
+                            app:cornerRadius="15dp" />
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        app:cardCornerRadius="15dp">
+                        <com.google.android.material.button.MaterialButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:backgroundTint="@color/error"
+                            android:fontFamily="@font/comfortaa_light"
+                            android:onClick="eraseAllButtonClicked"
+                            android:paddingVertical="11dp"
+                            android:text="Очистить все данные"
+                            app:cornerRadius="15dp" />
 
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_margin="5dp" />
+                    </LinearLayout>
 
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        app:cardCornerRadius="15dp">
-
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_margin="5dp" />
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                </LinearLayout>
+                </ScrollView>
 
             </com.google.android.material.card.MaterialCardView>
 
-        </LinearLayout>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/settings_account_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="20dp"
+                android:visibility="invisible"
+                app:cardCornerRadius="17dp"
+                app:cardElevation="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linear1">
 
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">\
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa_light"
+                            android:text="Аккаунт"
+                            android:textAlignment="center"
+                            android:textColor="@color/blue_standart"
+                            android:textSize="25sp"
+                            android:paddingBottom="15dp"/>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:backgroundTint="@color/blue_standart"
+                            android:fontFamily="@font/comfortaa_light"
+                            android:paddingVertical="11dp"
+                            android:text="Очистить все данные"
+                            app:cornerRadius="15dp" />
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/settings_info_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="20dp"
+                android:visibility="invisible"
+                app:cardCornerRadius="17dp"
+                app:cardElevation="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linear1">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/comfortaa_light"
+                            android:text="О приложении"
+                            android:textAlignment="center"
+                            android:textColor="@color/blue_standart"
+                            android:textSize="25sp"
+                            android:paddingBottom="15dp"/>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:backgroundTint="@color/black"
+                            android:fontFamily="@font/comfortaa_light"
+                            android:paddingVertical="11dp"
+                            android:text="Очистить все данные"
+                            app:cornerRadius="15dp" />
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
