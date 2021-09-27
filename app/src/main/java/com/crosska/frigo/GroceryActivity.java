@@ -27,7 +27,7 @@ import java.util.Objects;
 public class GroceryActivity extends AppCompatActivity {
 
     private EditText search_edittext;
-    private final ArrayList<GroceryRecyclerState> states = new ArrayList<GroceryRecyclerState>();
+    private final ArrayList<GroceryRecyclerState> states = new ArrayList<>();
     private Button fridge_button;
     private Button freezer_button;
     private Button cancel_new_product_button;
@@ -291,6 +291,12 @@ public class GroceryActivity extends AppCompatActivity {
             freezer_list_card.setVisibility(View.VISIBLE);
         }
         f_button.setEnabled(true);
+
+        if(card_type_showed) { // Добавление в холодильник
+
+        } else { // Добавление в морозилку
+
+        }
 
     }
 

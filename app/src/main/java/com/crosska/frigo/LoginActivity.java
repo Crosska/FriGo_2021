@@ -1,5 +1,6 @@
 package com.crosska.frigo;
 
+import android.accounts.AccountManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -139,6 +140,9 @@ public class LoginActivity extends AppCompatActivity {
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_login_activity_show_login_card);
         login_bar.startAnimation(animation);
         login_card_showed = true;
+
+        AccountManager am = AccountManager.get(this);
+        Bundle options = new Bundle();
     }
 
     public void backgroundClicked(View view) {

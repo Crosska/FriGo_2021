@@ -32,15 +32,14 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
         app:cardCornerRadius="15dp"
-        app:cardElevation="15dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,6 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:paddingBottom="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -68,7 +68,7 @@
                     android:layout_weight="0.3"
                     android:onClick="settingsAppButtonClicked"
                     app:cardCornerRadius="17dp"
-                    app:cardElevation="15dp">
+                    app:cardElevation="10dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/settings_app_image"
@@ -88,7 +88,7 @@
                     android:layout_weight="0.3"
                     android:onClick="settingsAccountButtonClicked"
                     app:cardCornerRadius="15dp"
-                    app:cardElevation="15dp">
+                    app:cardElevation="10dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/settings_account_image"
@@ -108,7 +108,7 @@
                     android:layout_weight="0.3"
                     android:onClick="settingsInfoButtonClicked"
                     app:cardCornerRadius="15dp"
-                    app:cardElevation="15dp">
+                    app:cardElevation="10dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/settings_info_image"
@@ -130,7 +130,7 @@
                 android:layout_marginBottom="20dp"
                 android:visibility="visible"
                 app:cardCornerRadius="17dp"
-                app:cardElevation="15dp"
+                app:cardElevation="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -194,7 +194,7 @@
                 android:layout_marginBottom="20dp"
                 android:visibility="invisible"
                 app:cardCornerRadius="17dp"
-                app:cardElevation="15dp"
+                app:cardElevation="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -205,182 +205,190 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp">
 
-                    <LinearLayout
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/comfortaa_light"
-                            android:paddingBottom="15dp"
-                            android:text="Аккаунт"
-                            android:textAlignment="center"
-                            android:textColor="@color/blue_standart"
-                            android:textSize="25sp" />
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginBottom="20dp"
-                            app:cardBackgroundColor="@color/blue_standart"
-                            app:cardCornerRadius="75dp"
-                            app:cardElevation="10dp">
-
-                            <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/registry_secondcard_human"
-                                android:layout_width="120dp"
-                                android:layout_height="120dp"
-                                android:layout_gravity="center"
-                                android:layout_margin="5dp"
-                                app:cardCornerRadius="60dp"
-                                app:cardElevation="20dp">
-
-                                <com.google.android.material.imageview.ShapeableImageView
-                                    android:id="@+id/settings_account_user_logo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:layout_marginTop="3dp"
-                                    android:padding="5dp" />
-
-                            </com.google.android.material.card.MaterialCardView>
-
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/settings_account_user_login"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/comfortaa_light"
-                            android:paddingHorizontal="10dp"
-                            android:paddingBottom="5dp"
-                            android:textAlignment="center"
-                            android:textColor="@color/blue_standart"
-                            android:textSize="25sp" />
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="0dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:paddingBottom="5dp">
+                            android:orientation="vertical">
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/comfortaa_light"
+                                android:paddingBottom="15dp"
+                                android:text="Аккаунт"
+                                android:textAlignment="center"
+                                android:textColor="@color/blue_standart"
+                                android:textSize="25sp" />
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="20dp"
+                                app:cardBackgroundColor="@color/blue_standart"
+                                app:cardCornerRadius="75dp"
+                                app:cardElevation="10dp">
+
+                                <com.google.android.material.card.MaterialCardView
+                                    android:id="@+id/registry_secondcard_human"
+                                    android:layout_width="120dp"
+                                    android:layout_height="120dp"
+                                    android:layout_gravity="center"
+                                    android:layout_margin="5dp"
+                                    app:cardCornerRadius="60dp"
+                                    app:cardElevation="20dp">
+
+                                    <com.google.android.material.imageview.ShapeableImageView
+                                        android:id="@+id/settings_account_user_logo"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="3dp"
+                                        android:padding="5dp" />
+
+                                </com.google.android.material.card.MaterialCardView>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/settings_account_user_login"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/comfortaa_light"
+                                android:paddingHorizontal="10dp"
+                                android:paddingBottom="5dp"
+                                android:textAlignment="center"
+                                android:textColor="@color/blue_standart"
+                                android:textSize="25sp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:paddingBottom="5dp">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/comfortaa_light"
+                                    android:text="Имя:"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/blue_standart"
+                                    android:textSize="20sp" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/settings_account_user_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/comfortaa_light"
+                                    android:paddingHorizontal="5dp"
+                                    android:text="null"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/blue_standart"
+                                    android:textSize="20sp" />
+
+                            </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/settings_account_new_user_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/comfortaa_light"
+                                android:hint="Новое имя"
+                                android:textColor="@color/blue_standart" />
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:fontFamily="@font/comfortaa_light"
-                                android:text="Имя:"
+                                android:paddingHorizontal="10dp"
+                                android:paddingVertical="5dp"
+                                android:text="Пол:"
                                 android:textAlignment="center"
                                 android:textColor="@color/blue_standart"
                                 android:textSize="20sp" />
 
+                            <RadioGroup
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.radiobutton.MaterialRadioButton
+                                    android:id="@+id/settings_account_user_sex_0"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/comfortaa_light"
+                                    android:text="Мужской"
+                                    android:textColor="@color/blue_standart" />
+
+                                <com.google.android.material.radiobutton.MaterialRadioButton
+                                    android:id="@+id/settings_account_user_sex_1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/comfortaa_light"
+                                    android:text="Женский"
+                                    android:textColor="@color/blue_standart" />
+
+                                <com.google.android.material.radiobutton.MaterialRadioButton
+                                    android:id="@+id/settings_account_user_sex_2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/comfortaa_light"
+                                    android:text="Не скажу"
+                                    android:textColor="@color/blue_standart" />
+
+                            </RadioGroup>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:layout_marginVertical="10dp"
+                                android:backgroundTint="@color/blue_standart"
+                                app:cardCornerRadius="15dp" />
+
                             <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/settings_account_user_name"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/comfortaa_light"
-                                android:paddingHorizontal="5dp"
-                                android:text="null"
+                                android:text="Чтобы применить изменения введите текущий пароль"
                                 android:textAlignment="center"
                                 android:textColor="@color/blue_standart"
-                                android:textSize="20sp" />
+                                android:textSize="15sp" />
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/settings_account_user_current_pass"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/comfortaa_light"
+                                android:hint="Текущий пароль"
+                                android:inputType="textPassword"
+                                android:textColor="@color/blue_standart"
+                                android:textSize="17sp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:layout_marginHorizontal="2dp"
+                                android:layout_marginVertical="10dp"
+                                android:fontFamily="@font/comfortaa_light"
+                                android:onClick="applyNewDataButtonClicked"
+                                android:text="Применить"
+                                app:cornerRadius="15dp"
+                                app:elevation="15dp" />
 
                         </LinearLayout>
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/settings_account_new_user_name"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/comfortaa_light"
-                            android:hint="Новое имя"
-                            android:textColor="@color/blue_standart" />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/comfortaa_light"
-                            android:paddingHorizontal="10dp"
-                            android:paddingVertical="5dp"
-                            android:text="Пол:"
-                            android:textAlignment="center"
-                            android:textColor="@color/blue_standart"
-                            android:textSize="20sp" />
-
-                        <RadioGroup
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:id="@+id/settings_account_user_sex_0"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/comfortaa_light"
-                                android:text="Мужской"
-                                android:textColor="@color/blue_standart" />
-
-                            <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:id="@+id/settings_account_user_sex_1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/comfortaa_light"
-                                android:text="Женский"
-                                android:textColor="@color/blue_standart" />
-
-                            <com.google.android.material.radiobutton.MaterialRadioButton
-                                android:id="@+id/settings_account_user_sex_2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/comfortaa_light"
-                                android:text="Не скажу"
-                                android:textColor="@color/blue_standart" />
-
-                        </RadioGroup>
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="match_parent"
-                            android:layout_height="5dp"
-                            android:layout_marginVertical="10dp"
-                            android:backgroundTint="@color/blue_standart"
-                            app:cardCornerRadius="15dp" />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/comfortaa_light"
-                            android:text="Чтобы применить изменения введите текущий пароль"
-                            android:textAlignment="center"
-                            android:textColor="@color/blue_standart"
-                            android:textSize="15sp" />
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/settings_account_user_current_pass"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/comfortaa_light"
-                            android:hint="Текущий пароль"
-                            android:inputType="textPassword"
-                            android:textColor="@color/blue_standart"
-                            android:textSize="17sp" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
-                            android:layout_marginHorizontal="2dp"
-                            android:layout_marginVertical="10dp"
-                            android:fontFamily="@font/comfortaa_light"
-                            android:onClick="applyNewDataButtonClicked"
-                            android:text="Применить"
-                            app:cornerRadius="15dp"
-                            app:elevation="15dp" />
-
-                    </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
                 </ScrollView>
 
@@ -465,6 +473,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
